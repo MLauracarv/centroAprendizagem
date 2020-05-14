@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{set title:'Cadastre-se' /}
+
+<form action="@{Professores.salvar}">
+
+<input type="hidden" name="prof.id" value="${p?.id}">
+
+Nome: <input type="text" name="prof.nome" value="${p?.nome}"></br>
+
+Matrícula: <input type="text" name="prof.matricula" value="${p?.matricula}"></br>
+
+E-mail: <input type="text" name="prof.email" value="${p?.email}"></br>
+
+Senha: <input type="password" name="prof.senha"></br>
+
+<button type="submit">Cadastrar</button>
+
+</form>
