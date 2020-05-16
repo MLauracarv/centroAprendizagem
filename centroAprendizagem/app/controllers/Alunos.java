@@ -13,7 +13,7 @@ public class Alunos extends Controller {
 	
 	public static void salvar(Aluno a) {
 	a.save();
-	formAlunos();
+	Login.autenticar(a.email, a.senha);
 	}
 	
 	public static void listarAlunos() {
@@ -31,6 +31,9 @@ public class Alunos extends Controller {
 		a.delete();
 		
 		listarAlunos();
+	}
+	public static void indexAlunos() {
+		render();
 	}
 
 }

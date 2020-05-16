@@ -12,7 +12,7 @@ public class Professores extends Controller {
 	}
 	public static void salvar(Professor prof) {
 	prof.save();
-	formProfessores();
+	Login.autenticar(prof.email, prof.senha);
 	}
 	public static void listarProfessores() {
 		List<Professor> lista = Professor.findAll();
@@ -28,6 +28,9 @@ public class Professores extends Controller {
 		p.delete();
 		
 		listarProfessores();
+	}
+	public static void indexProfessores() {
+		render();
 	}
 	
 }

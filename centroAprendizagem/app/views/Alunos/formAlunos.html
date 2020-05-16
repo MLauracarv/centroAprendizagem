@@ -1,21 +1,40 @@
-#{extends 'main.html' /}
-#{set title:'Cadastre-se' /}
+#{extends 'main-Login.html' /}
+#{set title:'Cadastro de alunos' /}
 
-<form action="@{Alunos.salvar}">
 
-<input type="hidden" name="a.id" value="${a?.id}">
 
-Nome: <input type="text" name="a.nome" value="${a?.nome}"></br>
+<div class="row justify-content-center h-100">
+<div class="col-xl-6">
+    <div class="form-input-content">
+        <div class="card login-form mb-0">
+            <div class="card-body pt-5">
+                <a class="text-center" href="index.html"> <h4>Olá, Aluno!</h4></a>
 
-Matrícula: <input type="text" name="a.matricula" value="${a?.matricula}"></br>
+                <form action="@{Alunos.salvar}"  class="mt-5 mb-5 login-input">
+                	
+                	<input type="hidden" name="a.id" value="${a?.id}"><input type="hidden" name="a.id" value="${a?.id}">
+                	
+                	<div class="form-group">
+                        <input  name="a.nome" type="text" class="form-control" placeholder="Nome Completo">
+                    </div>
+                    <div class="form-group">
+                        <input  name="a.matricula" type="text" class="form-control" placeholder="Matricula">
+                    </div>
+                    <div class="form-group">
+                        <input name="a.email" type="email" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input  name="a.senha" type="password" class="form-control" placeholder="Senha">
+                    </div>
+                    <button class="btn login-form__btn submit w-100">Cadastrar</button>
+                </form>
+               
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
-Curso: <input type="text" name="a.curso" value="${a?.curso}"></br>
 
-E-mail: <input type="text" name="a.email" value="${a?.email}"></br>
 
-Senha: <input type="password" name="a.senha"></br>
-
-<button type="submit">Cadastrar</button>
-
-</form>
 
