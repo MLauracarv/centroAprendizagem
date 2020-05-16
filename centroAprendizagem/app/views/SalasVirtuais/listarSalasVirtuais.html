@@ -1,0 +1,12 @@
+#{extends 'main-alunos.html' /}
+#{set title:'Listagem de Salas Virtuais' /}
+
+#{list items:lista, as:'s'}
+	<a href='@{SalasVirtuais.editar(s.id)}'>Editar</a> 
+	
+	<a href='@{SalasVirtuais.deletar(s.id)}'>Deletar</a> 
+	
+	${s.nomeTurma} - ${s.disciplina} - ${s.dia} - ${s.horario} - ${s.local}  <br/>
+	
+#{/list}
+
