@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import models.Professor;
 import models.SalaVirtual;
 import play.mvc.Controller;
 
@@ -24,7 +25,10 @@ public class SalasVirtuais extends Controller {
 	
 	public static void editar(long id) {
 		SalaVirtual s = SalaVirtual.findById(id);
-		renderTemplate("SalasVirtuais/formSalasVirtuais.html", s);
+		
+		List<Professor> professores = Professor.findAll();
+		
+		renderTemplate("SalasVirtuais/formSalasVirtuais.html", s, professores);
 	}
 	
 	public static void deletar(long id) {
@@ -32,6 +36,9 @@ public class SalasVirtuais extends Controller {
 		s.delete();
 		
 		listarSalasVirtuais();
+	}
+	public static void novaSalaVirtual(){
+		render();
 	}
 	
 }

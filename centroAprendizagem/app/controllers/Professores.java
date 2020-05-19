@@ -1,9 +1,11 @@
 package controllers;
 import java.util.List;
+import java.util.Random;
 
 import models.Aluno;
 import models.Professor;
 import play.mvc.Controller;
+
 
 public class Professores extends Controller {
 	
@@ -18,6 +20,14 @@ public class Professores extends Controller {
 		List<Professor> lista = Professor.findAll();
 		render(lista);
 	}
+	
+	//public static void numero(String[] args) {
+	//	int lista1 = NumeroAleatorio.main(args);
+	//render(lista1);
+	//}
+	
+
+	
 	public static void editar(long id) {
 		Professor p = Professor.findById(id);
 		renderTemplate("Professores/formProfessores.html", p);
@@ -32,5 +42,6 @@ public class Professores extends Controller {
 	public static void indexProfessores() {
 		render();
 	}
+	
 	
 }
