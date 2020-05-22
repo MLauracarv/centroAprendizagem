@@ -9,11 +9,14 @@ import play.mvc.Controller;
 public class SalasVirtuais extends Controller {
 	
 	public static void formSalasVirtuais() {
+	
 		render();
 	}
 	public static void salvar(SalaVirtual s) {
 		s.save();
-		SalasVirtuais.formSalasVirtuais();
+
+		renderTemplate("SalasVirtuais/novaSalaVirtual.html");
+		
 	}
 	
 
@@ -34,10 +37,10 @@ public class SalasVirtuais extends Controller {
 	public static void deletar(long id) {
 		SalaVirtual s = SalaVirtual.findById(id);
 		s.delete();
-		
 		listarSalasVirtuais();
 	}
 	public static void novaSalaVirtual(){
+		
 		render();
 	}
 	
