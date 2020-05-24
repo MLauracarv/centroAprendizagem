@@ -1,6 +1,7 @@
 package models;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinTable;
@@ -14,14 +15,27 @@ public class SalaVirtual extends Model{
 	public String nomeTurma;
 	public String dia ;
 	public String horario;
-	public String local;
+	public String sala;
+	public String bloco;
 	public String disciplina;
-	public String codigo;
 	
+	public static String geradorDeCodigos() {
+	UUID codigo= UUID.randomUUID();
+		
+	if (codigo.toString().length() > 10) {
+		return codigo.toString().substring(0, 8);	
+	}
+		return null;	
+	} 
+	public String codigo = geradorDeCodigos();
+	
+	
+
 	@ManyToMany
 	@JoinTable(name="salaVirtual_professor")
 	public List<Professor> professores;
 
+	
 	public String getNomeTurma() {
 		return nomeTurma;
 	}
@@ -46,12 +60,19 @@ public class SalaVirtual extends Model{
 		this.horario = horario;
 	}
 
-	public String getLocal() {
-		return local;
+	public String getSala() {
+		return sala;
 	}
 
-	public void setLocal(String local) {
-		this.local = local;
+	public void setSala(String sala) {
+		this.sala = sala;
+	}
+	public String getBloco() {
+		return bloco;
+	}
+
+	public void setBloco(String bloco) {
+		this.bloco = bloco;
 	}
 
 	public String getDisciplina() {
@@ -61,23 +82,5 @@ public class SalaVirtual extends Model{
 	public void setDisciplina(String disciplina) {
 		this.disciplina = disciplina;
 	}
-
-	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-
-	//public List<Professor> getProfessores() {
-		//return professores;
-	//}
-
-	//public void setProfessores(List<Professor> professores) {
-		//this.professores = professores;
-	//}
-	
-	
 	
 }

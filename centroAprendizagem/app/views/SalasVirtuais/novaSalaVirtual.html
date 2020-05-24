@@ -9,30 +9,38 @@
                             <div class="card-body">
                                 <h4 class="card-title">Informações</h4>
                                 <div class="table-responsive">
-                                    <table class="table table-bordered verticle-middle">
+                                    <table action="@{SalasVirtuais.detalhes}" class="table table-bordered verticle-middle">
                                         <thead>
                                             <tr>
-                                           
-                                                <th scope="col">Turma</th>
+                                           	
                                                 <th scope="col">Professor</th>
+                                                <th scope="col">Turma</th>
+                                                <th scope="col">Disciplina</th>
                                                 <th scope="col">Dia</th>
-                                                <th scope="col">Horário</th>
-                                                <th scope="col">Local</th>
+                                                <th scope="col">Horário(h)</th>
+                                                <th scope="col">Sala</th>
+                                                <th scope="col">Bloco</th>
+                                                <th scope="col">Código</th>
                                                 <th scope="col">Editar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                            	
-                                                <td>"@{SalasVirtuais.novaSalaVirtual()}"</td>
+       
                                                 <td>${session.get("nomeProfessor")}</td>
-                                                <td>${SalaVirtual.getDia()}</td>
-                                                <td>HORARIO</td>
-                                                <td>LOCAL</td>
-                                                
+                                                <td>${sala.nomeTurma} </td>
+                                                <td>${sala.disciplina} </td>
+                                                <td>${sala.dia} </td>
+                                                <td>${sala.horario} </td>
+                                                <td>${sala.sala} </td>
+                                                <td>${sala.bloco} </td>
+                                                <td>${sala.codigo} </td>
                                                 <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
                                                 </td>
                                             </tr>
+                                            
+                                            
+                                            
                                         </tbody>
                                     </table>
                                 </div>
