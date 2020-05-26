@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import controllers.SalasVirtuais;
 import play.db.jpa.Model;
 
 @Entity

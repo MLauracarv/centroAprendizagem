@@ -1,0 +1,48 @@
+#{extends 'main-alunos.html' /}
+#{set title:'Alunos' /}
+
+ 
+            <div class="container-fluid">
+                <div class="layout-compact-nav">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Informações</h4>
+                                <div class="table-responsive">
+                                    <table action="@{SalasVirtuais.autenticarCodigo}" class="table table-bordered verticle-middle">
+                                        <thead>
+                                            <tr>
+                                           	
+                                               
+                                                <th scope="col">Turma</th>
+                                                <th scope="col">Disciplina</th>
+                                                <th scope="col">Dia</th>
+                                                <th scope="col">Horário(h)</th>
+                                                <th scope="col">Sala</th>
+                                                <th scope="col">Bloco</th>
+                                                <th scope="col">Código</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+       		
+                                              
+                                                <td>${salaVirtual.nomeTurma}  </td>
+                                                <td>${salaVirtual.disciplina}  </td>
+                                                <td>${salaVirtual.dia}  </td>
+                                                <td>${salaVirtual.horario}  </td>
+                                                <td>${salaVirtual.sala}  </td>
+                                                <td>${salaVirtual.bloco}  </td>
+                                                <td>${salaVirtual.codigo}  </td>
+                                                
+                                            </tr>
+                                            
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

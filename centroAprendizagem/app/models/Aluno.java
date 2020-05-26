@@ -14,6 +14,7 @@ public class Aluno extends Model{
 	public Long matricula;
 	public String email;
 	public String senha;
+	public String enviar;
 	
 	
 	public TipoUsuario tipoUsuario;
