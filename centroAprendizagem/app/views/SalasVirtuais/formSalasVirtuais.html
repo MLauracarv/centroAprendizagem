@@ -10,11 +10,12 @@
                                     <form action="@{SalasVirtuais.salvar}">
                                         <div class="form-group">
                                         
-                                        	
                                             <p class="text-muted m-b-15 f-s-12"><code>As informações que serão preenchidas estão relacionadas ao Centro de Aprendizagem (CA) presencial com a finalidade de 
                                             auxiliar o aluno a conhecer sobre os horários e locais da monitoria de cada disciplina.</code> </p>
                                             
-                                            <input type="hidden" name="s.id" value="${s?.id}"><input type="hidden" name="s.id" value="${s?.id}">
+                                            
+                                            
+                                            <input type="hidden" name="sID" value="${s?.id}">
                                             <p><strong>Nome da turma:</strong></p> <input type="text" name="s.nomeTurma" class="form-control input-default" placeholder="Ex: 4INF2M"></br>
                                             <p><strong>Disciplina: </strong></p> <input type="text" name="s.disciplina"  class="form-control input-default" placeholder="Ex: História"></br>
                                             <p><strong>Dia da semana: </strong></p> <input type="text" name="s.dia"  class="form-control input-default" placeholder="Ex: Quarta"></br>

@@ -3,6 +3,7 @@ package jobs;
 import enums.TipoUsuario;
 import models.Aluno;
 import models.Professor;
+import models.SalaVirtual;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
 
@@ -50,8 +51,22 @@ public class inicializador extends Job{
 			professor2.senha = "123";
 			professor2.tipoUsuario = TipoUsuario.PROFESSOR;
 			professor2.save();
+				
+		}
+		if(SalaVirtual.count() == 0) {
+			
+			SalaVirtual sala1 = new SalaVirtual();
+			sala1.nomeTurma = "4INF2M";
+			sala1.sala = "5";
+			sala1.bloco = "2";
+			sala1.disciplina = "História";
+			sala1.horario = "15:20h";
+			sala1.dia = "Terça";
+			sala1.codigo = "f2af30d1";
+			sala1.save();
 			
 			
+				
 		}
 	}
 

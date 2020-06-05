@@ -21,8 +21,8 @@ public class Professor extends Model{
 	tipoUsuario = TipoUsuario.PROFESSOR;
 	}
 	
-	@ManyToMany(mappedBy="professores")
-	public List<SalaVirtual> salasVirtuais;
+	//@ManyToMany(mappedBy="professores")
+	//public List<SalaVirtual> salasVirtuais;
 	
 	
 }

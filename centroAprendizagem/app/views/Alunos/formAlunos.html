@@ -10,9 +10,9 @@
             <div class="card-body pt-5">
                 <a class="text-center" href="index.html"> <h4>Olá, aluno!</h4></a>
 
-                <form action="@{Alunos.salvar}"  class="mt-5 mb-5 login-input">
+                <form action="@{Alunos.salvar}"  class="mt-5 mb-5 login-input" >
                 	
-                	<input type="hidden" name="a.id" value="${a?.id}"><input type="hidden" name="a.id" value="${a?.id}">
+                	<input type="hidden" name="aid" value="${a?.id}">
                 	
                 	<div class="form-group">
                         <input  name="a.nome" type="text" class="form-control" placeholder="Nome Completo">

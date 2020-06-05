@@ -20,6 +20,11 @@ public class SalaVirtual extends Model{
 	public String bloco;
 	public String disciplina;
 	
+	
+	@ManyToMany
+	@JoinTable(name="salaVirtual_aluno")
+	public List<Aluno> alunos;
+	
 	public static String geradorDeCodigos() {
 	UUID codigo= UUID.randomUUID();
 		
@@ -29,14 +34,7 @@ public class SalaVirtual extends Model{
 		return null;	
 	} 
 	public String codigo = geradorDeCodigos();
-	
-	
 
-	@ManyToMany
-	@JoinTable(name="salaVirtual_professor")
-	public List<Professor> professores;
-
-	
 	public String getNomeTurma() {
 		return nomeTurma;
 	}
