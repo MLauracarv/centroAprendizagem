@@ -25,6 +25,10 @@ public class SalaVirtual extends Model{
 	@JoinTable(name="salaVirtual_aluno")
 	public List<Aluno> alunos;
 	
+	@ManyToMany
+	@JoinTable(name="salaVirtual_professor")
+	public List<Professor> professores;
+	
 	public static String geradorDeCodigos() {
 	UUID codigo= UUID.randomUUID();
 		

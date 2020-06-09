@@ -9,6 +9,7 @@ import models.Aluno;
 import models.Professor;
 import models.SalaVirtual;
 import controllers.Alunos;
+import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
 import play.db.jpa.GenericModel.JPAQuery;
 import play.mvc.Controller;
 
@@ -16,10 +17,22 @@ public class SalasVirtuais extends Controller {
 	
 	public static void formSalasVirtuais() {
 		render();
+		
 	}
 	
+	
 	public static void detalhes(long id, SalaVirtual s) {
+		
 		SalaVirtual sala = SalaVirtual.findById(id);
+		
+		String idP = session.get("idProfessor");
+		Long idProfessor= Long.valueOf(idP);
+		
+		Professor professor = Professor.findById(idProfessor);
+		
+		sala.professores.add(professor);
+		sala.save();
+		
 		renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s);
 	}
 	
