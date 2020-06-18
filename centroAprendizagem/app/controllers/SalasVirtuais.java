@@ -26,8 +26,10 @@ public class SalasVirtuais extends Controller {
 		SalaVirtual sala = SalaVirtual.findById(id);
 		
 		String idP = session.get("idProfessor");
+		//System.out.println("Professor " + idP);
 		Long idProfessor= Long.valueOf(idP);
 		
+
 		Professor professor = Professor.findById(idProfessor);
 		
 		sala.professores.add(professor);
@@ -46,13 +48,22 @@ public class SalasVirtuais extends Controller {
 	public static void autenticarCodigo(String codigo, SalaVirtual s) {
 		SalaVirtual salaVirtual= SalaVirtual.find("codigo = ?", codigo).first();
 		
+		
 		String idA = session.get("idAluno");
-		Long idAluno= Long.valueOf(idA);
+		Long idTeste= Long.valueOf(idA);
+		Aluno aluno = Aluno.findById(idTeste);
+		
+		//String IDA = session.get("idAluno");
+		
+		System.out.println(idA);
+		//Long idaluno= Long.valueOf(IDA);
+	
+		//Aluno aluno = Aluno.findById(idaluno);
 		
 				if(salaVirtual== null) {
 					SalasVirtuais.entrarNovaSalaVirtual();	
 				}
-				Aluno aluno = Aluno.findById(idAluno);
+				
 					
 				Long idSala = salaVirtual.id;
 				SalaVirtual sala  = SalaVirtual.findById(idSala);

@@ -4638,6 +4638,12 @@ button.bg-dark:focus {
 .d-inline-block {
   display: inline-block !important; }
 
+
+.card-inline-block{
+
+  display: inline-block !important;
+   }
+
 .d-block {
   display: block !important; }
 
