@@ -4,6 +4,7 @@ import java.util.Random;
 
 import models.Aluno;
 import models.Professor;
+import models.SalaVirtual;
 import play.mvc.Controller;
 
 
@@ -20,14 +21,7 @@ public class Professores extends Controller {
 		List<Professor> lista = Professor.findAll();
 		render(lista);
 	}
-	
-	//public static void numero(String[] args) {
-	//	int lista1 = NumeroAleatorio.main(args);
-	//render(lista1);
-	//}
-	
-
-	
+		
 	public static void editar(long id) {
 		Professor p = Professor.findById(id);
 		renderTemplate("Professores/formProfessores.html", p);
@@ -40,6 +34,11 @@ public class Professores extends Controller {
 		listarProfessores();
 	}
 	public static void indexProfessores() {
+		String idP = session.get("idProfessor");
+		Long idProfessor= Long.valueOf(idP);
+		Professor professor = Professor.findById(idProfessor);
+		List <SalaVirtual> salas = professor.salasVirtuais;
+		render( salas);
 		render();
 	}
 	

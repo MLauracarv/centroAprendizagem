@@ -37,19 +37,11 @@ public class Alunos extends Controller {
 		listarAlunos();
 	}
 	public static void indexAlunos() {
-		//Long idProfessor = 10;
-		//Professor professor = Professor.findById(idProfessor);
-		//List<Projeto> projetosProfessor = professor.projetos
 		
 		String idA = session.get("idAluno");
 		Long idAluno= Long.valueOf(idA);
 		Aluno aluno = Aluno.findById(idAluno);
 		List <SalaVirtual> salas = aluno.salasVirtuais;
-		
-		System.out.println("Salassss: "+ aluno.salasVirtuais);
-		
-	
-		
 		render( salas);
 	}
 	
