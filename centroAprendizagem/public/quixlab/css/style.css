@@ -11317,22 +11317,55 @@ table.dataTable thead .sorting::after {
     background: #1295bf;
     color: #fff;
     border-color: #1295bf; }
-
+    
+.card-infor {
+  width: 900px;
+  positions: absolute;
+  margin-bottom: 30px;
+  border: 0px;
+  border-radius: 0.625rem;
+  box-shadow: 6px 11px 41px -28px #a99de7;
+  background-color: #fff }
+  
+  
+.card .card-body {
+    padding: 1.88rem 1.81rem; }
+  .card-action a {
+    display: inline-block;
+    color: #fff;
+    border-radius: 50%; }
+    .card-action a:not(:last-child) {
+      margin-right: 4px; }
+    .card-action a i, .card-action a span {
+      font-size: 12px; }
+  .card-fullscreen {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 99999999;
+    overflow: auto; }
+  
 .card {
   margin-bottom: 30px;
   border: 0px;
   border-radius: 0.625rem;
   box-shadow: 6px 11px 41px -28px #a99de7; }
-  .card-title {
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 18px; }
-  .card-header {
+
+.card-title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 18px;
+  }
+     
+ .card-header {
     border-bottom: 0px;
     background: transparent; }
     .card-header:first-child {
       border-radius: 0; }
-  .card .card-body {
+      
+ .card .card-body {
     padding: 1.88rem 1.81rem; }
   .card-action a {
     display: inline-block;
