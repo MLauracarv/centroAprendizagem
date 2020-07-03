@@ -26,7 +26,6 @@ public class SalasVirtuais extends Controller {
 		SalaVirtual sala = SalaVirtual.findById(id);
 		
 		String idP = session.get("idProfessor");
-		//System.out.println("Professor " + idP);
 		Long idProfessor= Long.valueOf(idP);
 		
 
@@ -34,9 +33,20 @@ public class SalasVirtuais extends Controller {
 		
 		sala.professores.add(professor);
 		sala.save();
-		
 		renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s);
 	}
+	
+	 public static void mostrarSalaProfessores(long id, SalaVirtual s) {
+		 SalaVirtual sala = SalaVirtual.findById(id);
+		 renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s);
+	}
+	 
+	 public static void mostrarSalaAlunos(long id, SalaVirtual s) {
+		 SalaVirtual sala = SalaVirtual.findById(id);
+		 renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html", sala, s);
+	}
+	 
+	
 	
 	public static void editar(long id) {
 		SalaVirtual s = SalaVirtual.findById(id);
@@ -76,6 +86,15 @@ public class SalasVirtuais extends Controller {
 				
 				renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html",  salaVirtual);			
 	}
+	
+	public static void mostrarSala(long i) {
+
+		System.out.println("IDDD "+ i);
+		SalaVirtual salaVirtual= SalaVirtual.findById(i);
+		
+		renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html",  salaVirtual);			
+	}
+	
 	
 	public static void salvar(SalaVirtual s) {
 		s.save();	

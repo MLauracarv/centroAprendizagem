@@ -533,7 +533,8 @@ pre {
   display: flex;
   flex-wrap: wrap;
   margin-right: -15px;
-  margin-left: -15px; }
+  margin-left: -15px;
+   }
 
 .no-gutters {
   margin-right: 0;
@@ -3272,7 +3273,8 @@ input[type="button"].btn-block {
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1.25rem; }
+  padding: 1.25rem;
+ }
 
 .card-title {
   margin-bottom: 0.75rem; }
@@ -4636,12 +4638,18 @@ button.bg-dark:focus {
   display: inline !important; }
 
 .d-inline-block {
+	
+  margin-right: 15px;
+  margin-left: -15px;
+
   display: inline-block !important; }
 
 
 .card-inline-block{
 
   display: inline-block !important;
+  
+  
    }
 
 .d-block {
@@ -9512,6 +9520,13 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     color: #AFB4C5; }
     .media-reply__link i:hover, .media-reply__link span:hover {
       color: #FF4D87; }
+
+.botao{
+
+background: linear-gradient(#ffc480, #ff763b);
+
+}
+
 
 .login-form__title {
   color: #515E75;
