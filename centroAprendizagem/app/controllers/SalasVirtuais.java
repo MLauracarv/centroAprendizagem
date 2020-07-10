@@ -9,6 +9,7 @@ import models.Aluno;
 import models.Professor;
 import models.SalaVirtual;
 import controllers.Alunos;
+import controllers.Professores;
 import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
 import play.db.jpa.GenericModel.JPAQuery;
 import play.mvc.Controller;
@@ -20,21 +21,7 @@ public class SalasVirtuais extends Controller {
 		
 	}
 	
-	
-	public static void detalhes(long id, SalaVirtual s) {
-		
-		SalaVirtual sala = SalaVirtual.findById(id);
-		
-		String idP = session.get("idProfessor");
-		Long idProfessor= Long.valueOf(idP);
-		
 
-		Professor professor = Professor.findById(idProfessor);
-		
-		sala.professores.add(professor);
-		sala.save();
-		renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s);
-	}
 	
 	 public static void mostrarSalaProfessores(long id, SalaVirtual s) {
 		 SalaVirtual sala = SalaVirtual.findById(id);
@@ -97,8 +84,35 @@ public class SalasVirtuais extends Controller {
 	
 	
 	public static void salvar(SalaVirtual s) {
-		s.save();	
-		detalhes(s.id, s);	
+		
+		//long id = s.id;
+		
+		//System.out.println("sala "+s.id);
+		
+		if(s.id == null) {
+			s.save();
+			detalhes(s.id, s);	
+		}
+		else {
+			s.save();
+			SalaVirtual sala = s;
+			renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s);
+		}
+		
+	}
+	public static void detalhes(long id, SalaVirtual s) {
+		
+		SalaVirtual sala = SalaVirtual.findById(id);
+		
+		String idP = session.get("idProfessor");
+		Long idProfessor= Long.valueOf(idP);
+		
+
+		Professor professor = Professor.findById(idProfessor);
+		
+		sala.professores.add(professor);
+		sala.save();
+		renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s);
 	}
 		
 	public static void listarSalasVirtuais() {

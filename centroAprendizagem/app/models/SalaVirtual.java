@@ -38,6 +38,8 @@ public class SalaVirtual extends Model{
 		return null;	
 	} 
 	public String codigo = geradorDeCodigos();
+	
+	
 
 	public String getNomeTurma() {
 		return nomeTurma;

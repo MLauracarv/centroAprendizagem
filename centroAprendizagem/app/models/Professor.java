@@ -23,6 +23,8 @@ public class Professor extends Model{
 	@ManyToMany(mappedBy="professores")
 	public List<SalaVirtual> salasVirtuais;
 	
+	
+	
 	//@ManyToMany(mappedBy="professores")
 	//public List<SalaVirtual> salasVirtuais;
 	
