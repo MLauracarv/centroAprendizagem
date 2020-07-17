@@ -38,9 +38,11 @@ public class Professores extends Controller {
 		Long idProfessor= Long.valueOf(idP);
 		Professor professor = Professor.findById(idProfessor);
 		List <SalaVirtual> salas = professor.salasVirtuais;
-		render( salas);
-		render();
+		render(salas);
+		render();	
 	}
+	
+	
 	
 	
 }

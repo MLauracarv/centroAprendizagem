@@ -21,11 +21,10 @@ public class SalasVirtuais extends Controller {
 		
 	}
 	
-
-	
 	 public static void mostrarSalaProfessores(long id, SalaVirtual s) {
 		 SalaVirtual sala = SalaVirtual.findById(id);
-		 renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s);
+		 List<Aluno> salas = sala.alunos;
+		 renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s, salas);
 	}
 	 
 	 public static void mostrarSalaAlunos(long id, SalaVirtual s) {
@@ -50,13 +49,6 @@ public class SalasVirtuais extends Controller {
 		Long idTeste= Long.valueOf(idA);
 		Aluno aluno = Aluno.findById(idTeste);
 		
-		//String IDA = session.get("idAluno");
-		
-		System.out.println(idA);
-		//Long idaluno= Long.valueOf(IDA);
-	
-		//Aluno aluno = Aluno.findById(idaluno);
-		
 				if(salaVirtual== null) {
 					SalasVirtuais.entrarNovaSalaVirtual();	
 				}
@@ -71,7 +63,7 @@ public class SalasVirtuais extends Controller {
 					s.save();
 				}
 				
-				renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html",  salaVirtual);			
+		renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html",  salaVirtual);			
 	}
 	
 	public static void mostrarSala(long i) {
@@ -85,18 +77,16 @@ public class SalasVirtuais extends Controller {
 	
 	public static void salvar(SalaVirtual s) {
 		
-		//long id = s.id;
-		
-		//System.out.println("sala "+s.id);
-		
 		if(s.id == null) {
 			s.save();
+			
 			detalhes(s.id, s);	
 		}
 		else {
 			s.save();
 			SalaVirtual sala = s;
-			renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s);
+			List<Aluno> salas = sala.alunos;
+			renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s, salas);
 		}
 		
 	}
@@ -106,13 +96,16 @@ public class SalasVirtuais extends Controller {
 		
 		String idP = session.get("idProfessor");
 		Long idProfessor= Long.valueOf(idP);
-		
-
 		Professor professor = Professor.findById(idProfessor);
+				
+		if(sala.professores.contains(professor) == false) {
+			sala.professores.add(professor);
+			sala.save();
+		}
 		
-		sala.professores.add(professor);
-		sala.save();
-		renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s);
+		List<Aluno> salas = sala.alunos;
+		
+		renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s, salas);	
 	}
 		
 	public static void listarSalasVirtuais() {
@@ -127,7 +120,12 @@ public class SalasVirtuais extends Controller {
 	}
 	
 	public static void novaSalaVirtual(){
-		render();
+		
+		String idP = session.get("idProfessor");
+		Long idProfessor= Long.valueOf(idP);
+		Professor professor = Professor.findById(idProfessor);
+		List <SalaVirtual> salas = professor.salasVirtuais;
+		render(salas);
 	}
 	
 	public static void novaSalaVirtualAlunos(){
@@ -136,9 +134,19 @@ public class SalasVirtuais extends Controller {
 	
 	public static void entrarNovaSalaVirtual() {
 		render();
+		
+	}
+	public static void mostrarListaAlunos(long id) {
+		String idP = session.get("idProfessor");
+		Long idProfessor= Long.valueOf(idP);
+		id= 2;
+		SalaVirtual sala = SalaVirtual.findById(id);
+		List<Aluno> alunos = sala.alunos;
+		
+		render(alunos);
+		renderTemplate("SalasVirtuais/novaSalaVirtual", alunos);	
 	}
 	
 
-	
 	
 }
