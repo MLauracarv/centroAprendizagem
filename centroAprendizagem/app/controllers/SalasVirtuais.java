@@ -29,7 +29,8 @@ public class SalasVirtuais extends Controller {
 	 
 	 public static void mostrarSalaAlunos(long id, SalaVirtual s) {
 		 SalaVirtual sala = SalaVirtual.findById(id);
-		 renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html", sala, s);
+		 List<Aluno> alunos = sala.alunos;
+		 renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html", sala, s, alunos);
 	}
 	 
 	
@@ -62,8 +63,8 @@ public class SalasVirtuais extends Controller {
 					s.alunos.add(aluno);
 					s.save();
 				}
-				
-		renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html",  salaVirtual);			
+				List<Aluno> alunos = sala.alunos;
+		renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html",  salaVirtual, alunos);			
 	}
 	
 	public static void mostrarSala(long i) {
