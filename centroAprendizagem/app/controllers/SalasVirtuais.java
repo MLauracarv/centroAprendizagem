@@ -117,6 +117,7 @@ public class SalasVirtuais extends Controller {
 	public static void deletar(long id) {
 		SalaVirtual s = SalaVirtual.findById(id);
 		s.delete();
+		
 		listarSalasVirtuais();
 	}
 	
