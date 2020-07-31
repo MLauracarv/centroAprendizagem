@@ -1,10 +1,8 @@
 #{extends 'main-alunos.html' /}
 #{set title:'Página Inicial' /}
 
-	
-<div class="content-body">
 
-            <div class="container-fluid mt-3">
+  <div class="container-fluid mt-3">
             	#{list items: salas, as: 'sala'}
                 <div class="card-inline-block">
                 <div class="d-inline-block">
@@ -12,23 +10,23 @@
                             <div class="card-body">
                                 <h3 class="card-title text-white"> ${sala.disciplina}</h3>
                                 <div class="d-inline-block">
-                                    
                                     <h2 class="text-white">${sala.nomeTurma}</h2>
-                                	
-                                	<a href="@{SalasVirtuais.mostrarSalaAlunos(a = sala.id)}"><p class="text-white mb-0" style= "text-decoration:underline;" >Mais informações</p></a>
+                                	<a href="@{SalasVirtuais.mostrarSalaAlunos( id = sala.id)}"><p class="text-white mb-0" style= "text-decoration:underline;" >Mais informações</p></a>
                                 </div>
                                 <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
                             </div>
                         </div>
                     </div>
                 </div>
-                  #{/list}
-            </div>
-          
-</div>
+                #{/list}
+  </div>
 
 
-	
+
+
+
+
+
 
 
         

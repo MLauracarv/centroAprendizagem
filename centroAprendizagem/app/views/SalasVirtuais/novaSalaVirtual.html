@@ -29,7 +29,7 @@
                                         
                                         <thead>
                                             <tr>
-                                                <th scope="col">Professor</th>
+                                                
                                                 <th scope="col">Turma</th>
                                                 <th scope="col">Disciplina</th>
                                                 <th scope="col">Dia</th>
@@ -42,7 +42,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>${session.get("nomeProfessor")}</td>
+                                                
                                                 <td>${sala.nomeTurma} </td>
                                                 <td>${sala.disciplina} </td>
                                                 <td>${sala.dia} </td>
@@ -60,7 +60,6 @@
                                                     		<h4 class="modal-title"><strong>Deseja excluir ${sala.disciplina}-${sala.nomeTurma}?</strong></h4>
                                                 			</div>
                                             				<div class="modal-footer">
-                                                			<button style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">Fechar</button></a>
                                                     		<a href="@{SalasVirtuais.deletar(id = sala.id)}" ><button style="background: #FF0000; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">Excluir</button></a>
                                                 			</div>
                                             			</div>
@@ -97,4 +96,4 @@
 			</div>
 		</div>
 	</div>
-</div>          
+</div>   

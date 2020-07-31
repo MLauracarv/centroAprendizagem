@@ -27,7 +27,7 @@ public class Login extends Controller {
 			session.put("matriculaProfessor", professor.matricula);
 			session.put("emailProfessor", professor.email);
 			session.put("idProfessor", professor.id);
-			Professores.indexProfessores();
+			SalasVirtuais.indexProfessores();
 			}
 			else {
 			session.put("nomeAluno", aluno.nome);

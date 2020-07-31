@@ -117,8 +117,7 @@ public class SalasVirtuais extends Controller {
 	public static void deletar(long id) {
 		SalaVirtual s = SalaVirtual.findById(id);
 		s.delete();
-		
-		listarSalasVirtuais();
+		indexProfessores();
 	}
 	
 	public static void novaSalaVirtual(){
@@ -147,6 +146,14 @@ public class SalasVirtuais extends Controller {
 		
 		render(alunos);
 		renderTemplate("SalasVirtuais/novaSalaVirtual", alunos);	
+	}
+	public static void indexProfessores() {
+		String idP = session.get("idProfessor");
+		Long idProfessor= Long.valueOf(idP);
+		Professor professor = Professor.findById(idProfessor);
+		List <SalaVirtual> salas = professor.salasVirtuais;
+		render(salas);
+		render();	
 	}
 	
 

@@ -33,14 +33,7 @@ public class Professores extends Controller {
 		
 		listarProfessores();
 	}
-	public static void indexProfessores() {
-		String idP = session.get("idProfessor");
-		Long idProfessor= Long.valueOf(idP);
-		Professor professor = Professor.findById(idProfessor);
-		List <SalaVirtual> salas = professor.salasVirtuais;
-		render(salas);
-		render();	
-	}
+	
 	
 	
 	
