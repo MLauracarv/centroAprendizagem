@@ -28,6 +28,14 @@ public class SalasVirtuais extends Controller {
 		 ValuePaginator listaPaginadaAlunos = new ValuePaginator(salas);
 		 listaPaginadaAlunos.setPageSize(10);
 		 
+		 if(salas.isEmpty()) {
+			listaPaginadaAlunos = null;
+		}
+		else {
+			listaPaginadaAlunos = listaPaginadaAlunos; 
+		}
+		 
+		 
 		 renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s, listaPaginadaAlunos);
 	}
 	 
@@ -72,12 +80,13 @@ public class SalasVirtuais extends Controller {
 				List<Aluno> alunos = sala.alunos;
 				ValuePaginator listaPaginadaAlunos = new ValuePaginator(alunos);
 				listaPaginadaAlunos.setPageSize(2);
+				
 				renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html",  salaVirtual,listaPaginadaAlunos);			
 	}
 	
 	public static void mostrarSala(long i) {
 
-		System.out.println("IDDD "+ i);
+	
 		SalaVirtual salaVirtual= SalaVirtual.findById(i);
 		renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html",  salaVirtual);			
 	}
@@ -112,6 +121,13 @@ public class SalasVirtuais extends Controller {
 		List<Aluno> salas = sala.alunos;
 		ValuePaginator listaPaginadaAlunos = new ValuePaginator(salas);
 		listaPaginadaAlunos.setPageSize(10);
+		
+		if(salas.isEmpty()) {
+			listaPaginadaAlunos = null;
+		}
+		else {
+			listaPaginadaAlunos = listaPaginadaAlunos; 
+		}
 		
 		renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s, salas, listaPaginadaAlunos);	
 	}

@@ -43,6 +43,7 @@ public class Alunos extends Controller {
 		Aluno aluno = Aluno.findById(idAluno);
 		List <SalaVirtual> salas = aluno.salasVirtuais;
 		render( salas);
+		//render
 	}
 	
 	
