@@ -79,7 +79,7 @@ public class SalasVirtuais extends Controller {
 				
 				List<Aluno> alunos = sala.alunos;
 				ValuePaginator listaPaginadaAlunos = new ValuePaginator(alunos);
-				listaPaginadaAlunos.setPageSize(2);
+				listaPaginadaAlunos.setPageSize(10);
 				
 				renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html",  salaVirtual,listaPaginadaAlunos);			
 	}
@@ -159,17 +159,19 @@ public class SalasVirtuais extends Controller {
 		render();
 		
 	}
-	//public static void mostrarListaAlunos(long id) {
-	//	String idP = session.get("idProfessor");
-	//	Long idProfessor= Long.valueOf(idP);
-	//	id= 2;
-	//	SalaVirtual sala = SalaVirtual.findById(id);
-	//	List<Aluno> alunos = sala.alunos;
-	//	ValuePaginator listaPaginadaAlunos = new ValuePaginator(alunos);
-	//	listaPaginadaAlunos.setPageSize(2);
+	public static void registro(SalaVirtual salaVirtual){
 		
-	//	renderTemplate("SalasVirtuais/novaSalaVirtual", listaPaginadaAlunos );	
-	//}
+		Long id = (long) 2;
+		SalaVirtual sala = SalaVirtual.findById(id);
+		List<Aluno> listaAlunos = sala.alunos;
+		System.out.println("ALUNOS"+ listaAlunos);
+		render(listaAlunos);
+		
+		
+		
+		
+	}
+	
 	public static void indexProfessores() {
 		String idP = session.get("idProfessor");
 		Long idProfessor= Long.valueOf(idP);

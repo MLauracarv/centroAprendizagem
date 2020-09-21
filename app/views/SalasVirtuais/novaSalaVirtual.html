@@ -21,12 +21,15 @@
                                 <ul class="nav nav-tabs mb-3" role="tablist">
                                     <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#home8"><span><i class="ti-home"></i></span></a>
                                     </li>
-                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile8"><span><i class="ti-user"></i></span></a>
+                                	<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile8"><span><i class="ti-user"></i></span></a>
+                                    </li>
+                                  	 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#messages8"><span><i class="ti-email"></i></span></a>
                                     </li>
 
                                 </ul>
                                 
                                 <div class="tab-content tabcontent-border">
+                                	
                                     <div class="tab-pane fade show active" id="home8" role="tabpanel">
                                         
                                     	<table action="@{SalasVirtuais.salvar}" class="table table-bordered verticle-middle">
@@ -115,12 +118,18 @@
                                          #{paginate.controls items:listaPaginadaAlunos/}
                                         
                                         #{/else}
-                                       
-                                       
-                                        
+                                         
                                		 </table>
-                               		 
-                              		</div>
+                               		  </div>
+                               		  </div>     
+                               		   
+                              		<div class="tab-pane fade" id="messages8" role="tabpanel">
+                                        <div class="p-t-15">
+                                            <h4>CAs cadastrados</h4>
+                                            <p>Ainda não nenhum CA cadastrado!</p>
+                                             <a href="@{SalasVirtuais.registro}"><button type="button" class="btn mb-1 btn-success">Registrar novo CA</button></a>
+                                        </div>
+                                    </div> 
          				
          					 </div>       
 						</div>
