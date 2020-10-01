@@ -29,4 +29,7 @@ public class Aluno extends Model{
 	@ManyToMany(mappedBy="alunos")
 	public List<SalaVirtual> salasVirtuais;
 	
+	
+	
+	
 }

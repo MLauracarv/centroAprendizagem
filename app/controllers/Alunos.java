@@ -11,6 +11,7 @@ import play.mvc.Controller;
 
 public class Alunos extends Controller {
 	
+	
 	public static void formAlunos() {
 		render();
 	}
@@ -34,6 +35,7 @@ public class Alunos extends Controller {
 		Aluno a = Aluno.findById(id);
 		a.delete();
 		
+		
 		listarAlunos();
 	}
 	public static void indexAlunos() {
@@ -43,7 +45,7 @@ public class Alunos extends Controller {
 		Aluno aluno = Aluno.findById(idAluno);
 		List <SalaVirtual> salas = aluno.salasVirtuais;
 		render( salas);
-		//render
+		
 	}
 	
 	

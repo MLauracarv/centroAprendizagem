@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import models.Aluno;
+import models.CentroAprendizagem;
 import models.Professor;
 import models.SalaVirtual;
 import controllers.Alunos;
@@ -35,8 +36,11 @@ public class SalasVirtuais extends Controller {
 			listaPaginadaAlunos = listaPaginadaAlunos; 
 		}
 		 
+		List<CentroAprendizagem> listaCas = sala.centrosAprendizagem;
+		System.out.println(listaCas);
+		
 		 
-		 renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s, listaPaginadaAlunos);
+		 renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s, listaPaginadaAlunos, listaCas);
 	}
 	 
 	 public static void mostrarSalaAlunos(long id, SalaVirtual s) {
@@ -159,19 +163,7 @@ public class SalasVirtuais extends Controller {
 		render();
 		
 	}
-	public static void registro(SalaVirtual salaVirtual){
-		
-		Long id = (long) 2;
-		SalaVirtual sala = SalaVirtual.findById(id);
-		List<Aluno> listaAlunos = sala.alunos;
-		System.out.println("ALUNOS"+ listaAlunos);
-		render(listaAlunos);
-		
-		
-		
-		
-	}
-	
+
 	public static void indexProfessores() {
 		String idP = session.get("idProfessor");
 		Long idProfessor= Long.valueOf(idP);
