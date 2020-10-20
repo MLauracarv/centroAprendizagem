@@ -15,12 +15,14 @@ public class CentrosAprendizagem extends Controller {
 		render(salaVirtual);		
 	}
 	
+	//receber vetor de frequenciAlunos
 	public static void frequenciaAlunos(Long salaVirtual, Long id_CA, Long frequencia,Long participacao, Long id_Aluno){
 		
+		//for diferente no frequnciaAAlunos: frequencia, part, dado do aluno
 		Long frequencia1 = frequencia;
 		int n = 10; // tamanho do vetor
 		Long[] v = new Long[n]; 
-		int i; // índice ou posição
+		int i; // índice ou posição:
 
 		for (int z = 0; z<2; z++) {
 			System.out.println("MOSTRE z "+ z);
