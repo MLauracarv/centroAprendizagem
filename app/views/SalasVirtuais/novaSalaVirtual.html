@@ -134,7 +134,7 @@
                                             
                                             #{list items: listaCas, as: 'cas'}
                                              <div class="card-content" >
-                                    			<div class="alert alert-primary"><a href="@{CentrosAprendizagem.frequenciaAlunos(sala.id)}" class="alert-link">Assunto: ${cas.assunto}, realizado em ${cas.data} às ${cas.horario}.</a></div>
+                                    			<div class="alert alert-primary"><a href="@{CentrosAprendizagem.frequenciaAlunos(sala.id, cas.id)}" class="alert-link">Assunto: ${cas.assunto}, realizado em ${cas.data} às ${cas.horario}.</a></div>
                                     			
                                     		</div>
                                     		#{/list}
