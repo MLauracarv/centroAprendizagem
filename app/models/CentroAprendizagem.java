@@ -5,7 +5,9 @@ import java.sql.Time;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import play.db.jpa.Model;
 
@@ -16,10 +18,11 @@ public class CentroAprendizagem extends Model{
 	public String horario;
 	public String assunto;
 	public String local;
-	public Long idSalaVirtual;
 	
-	@ManyToMany(mappedBy="centrosAprendizagem")
-	public List<SalaVirtual> salasVirtuais;
+	
+	@ManyToOne
+	@JoinColumn(name="idSalaVirtual")
+	public SalaVirtual salaVirtual;
 	
 	
 

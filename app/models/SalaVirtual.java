@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import controllers.SalasVirtuais;
 import play.db.jpa.Model;
@@ -25,13 +27,15 @@ public class SalaVirtual extends Model{
 	@JoinTable(name="salaVirtual_aluno")
 	public List<Aluno> alunos;
 	
+	//onToMany
 	@ManyToMany
 	@JoinTable(name="salaVirtual_professor")
 	public List<Professor> professores;
 
-	@ManyToMany
-	@JoinTable(name="salaVirtual_centroAprendizagem")
+	@OneToMany(mappedBy="salaVirtual")
 	public List<CentroAprendizagem> centrosAprendizagem;
+	
+	//quando o relacionamento é manyToMany o BD vai criar uma terceira tabela
 	
 	
 	public static String geradorDeCodigos() {

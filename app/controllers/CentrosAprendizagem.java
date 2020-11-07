@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.Aluno;
 import models.CentroAprendizagem;
+import models.Frequencia;
 import models.SalaVirtual;
 import play.modules.paginate.ValuePaginator;
 import play.mvc.Controller;
@@ -11,65 +12,59 @@ import play.mvc.Controller;
 public class CentrosAprendizagem extends Controller {
 
 	
-	public static void registro(Long salaVirtual){
-		render(salaVirtual);		
+	public static void registro(Long salaVirtual, long id){
+		
+		System.out.println("TESTEEEEE"+salaVirtual);
+		SalaVirtual sala = SalaVirtual.findById(salaVirtual);
+		List<CentroAprendizagem> listaCas = sala.centrosAprendizagem;
+		System.out.println(listaCas);
+		render(salaVirtual,listaCas);		
 	}
 	
-	//receber vetor de frequenciAlunos
-	public static void frequenciaAlunos(Long salaVirtual, Long id_CA, Long frequencia,Long participacao, Long id_Aluno){
-		
-		//for diferente no frequnciaAAlunos: frequencia, part, dado do aluno
-		Long frequencia1 = frequencia;
-		int n = 10; // tamanho do vetor
-		Long[] v = new Long[n]; 
-		int i; // índice ou posição:
 
-		for (int z = 0; z<2; z++) {
-			System.out.println("MOSTRE z "+ z);
-			for (i=0; i<n; i++) {
-				v[0] = salaVirtual; 
-				v[1] = id_CA;
-				v[2] = frequencia1; 
-				v[3] = participacao; 
-				v[4] = id_Aluno;
-		  
-			}
-			System.out.println();
-			System.out.println("TESTE");
-			System.out.println("MOSTRE i "+ i);
-			System.out.println("SALA " + v[0] );
-			System.out.println("ID_CA " + v[1] );
-			System.out.println("FREQUENCIA " + v[2] );
-			System.out.println("PARTICIPAÇÃO " + v[3] );
-			System.out.println("ID_ ALUNO " + v[4] );
-			System.out.println();
-		
-		}
-	
-	  
-		//System.out.println("TA CHEGANDO F:"+frequencia1+" p "+ participacao+ " id "+ id_Aluno);
-		
-		//System.out.println("id: " +id_CA);
-		
-		//System.out.println("idSALA " +salaVirtual);
+	public static void frequenciaAlunos( Long salaVirtual, Long id_CA, List<Integer> frequencia, List<Integer> participacao){
 		
 		SalaVirtual sala = SalaVirtual.findById(salaVirtual);
 		List<Aluno> alunos = sala.alunos;
 		
+		
 		ValuePaginator listaPaginadaAlunos = new ValuePaginator(alunos);
 		listaPaginadaAlunos.setPageSize(10);
-		//salvarFrequenciaAlunos(frequencia, participacao, id);
-		render(listaPaginadaAlunos, salaVirtual, sala);
-		//salvarFrequenciaAlunos(frequencia, 0, id_CA);
+		
+		
+		
+		if( frequencia != null) {
+			for(Integer i = 0; i < alunos.size(); i++) {
+				
+				System.out.println("ID ALUNO "+ alunos.get(i).id);
+				System.out.println("Nome: "+ alunos.get(i) + " Frequencia " + frequencia.get(i) + " Participação " + participacao.get(i));
+				
+				Aluno aluno = Aluno.findById(alunos.get(i).id);
+				CentroAprendizagem centro = CentroAprendizagem.findById(id_CA);
+				Frequencia f = new Frequencia();
+				
+				
+				System.out.println(f.grauFrequencia = frequencia.get(i));
+				System.out.println(f.grauParticipacao = participacao.get(i));
+				f.centroAprendizagem = centro;
+				f.aluno = aluno;
+				
+				
+				f.save();
+				System.out.println();
+				
+				}	
+			}
+			
+		
+		render(id_CA, salaVirtual, listaPaginadaAlunos, alunos);
 		
 	}
 		
-	
-
-	public static void salvar( CentroAprendizagem c, Long salaVirtual) {
+	public static void salvar( CentroAprendizagem c, Long idSalaVirtual) {
 		c.save();
 		
-		SalaVirtual sala = SalaVirtual.findById(c.idSalaVirtual);
+		SalaVirtual sala = SalaVirtual.findById(idSalaVirtual);
 		if(sala.centrosAprendizagem.contains(c) == false) {
 			sala.centrosAprendizagem.add(c);
 			sala.save();
@@ -79,7 +74,7 @@ public class CentrosAprendizagem extends Controller {
 		renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, listaCas); 
 				
 	}
-	
+
 	public static void salvarFrequenciaAlunos(int frequencia, int participacao, Long id ) {
 		
 		System.out.println("Frequencia "+ frequencia);

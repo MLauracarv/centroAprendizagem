@@ -5,16 +5,28 @@ import java.sql.Time;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
 
 @Entity
 public class Frequencia extends Model {
 
-	public String data;
-	public Long id_aluno;
-	public Long id_CA;
-	public int grauParticipacao;
-	public int grauFrequencia;
+	//public Long id_salaVirtual;
+	//public Long id_aluno;
+	//public Long id_CA;
+	public Integer grauParticipacao;
+	public Integer grauFrequencia;
+
+	
+	@ManyToOne
+	@JoinColumn(name="idAluno")
+	public Aluno aluno;
+	
+	@ManyToOne
+	@JoinColumn(name="idCa")
+	public CentroAprendizagem centroAprendizagem;
 }

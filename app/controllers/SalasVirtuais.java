@@ -36,12 +36,15 @@ public class SalasVirtuais extends Controller {
 			listaPaginadaAlunos = listaPaginadaAlunos; 
 		}
 		 
-		List<CentroAprendizagem> listaCas = sala.centrosAprendizagem;
-		System.out.println(listaCas);
-		
+		//List<CentroAprendizagem> listaCas = sala.centrosAprendizagem;
+		//System.out.println(listaCas);
+		 List<CentroAprendizagem> listaCas = sala.centrosAprendizagem;
+			System.out.println(listaCas);
+			
 		 
 		 renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s, listaPaginadaAlunos, listaCas);
 	}
+	
 	 
 	 public static void mostrarSalaAlunos(long id, SalaVirtual s) {
 		 SalaVirtual sala = SalaVirtual.findById(id);
@@ -147,12 +150,20 @@ public class SalasVirtuais extends Controller {
 		indexProfessores();
 	}
 	
-	public static void novaSalaVirtual(){
+	public static void novaSalaVirtual(Long id){
+		System.out.println("mostrar id" + id);
 		String idP = session.get("idProfessor");
 		Long idProfessor= Long.valueOf(idP);
 		Professor professor = Professor.findById(idProfessor);
 		List <SalaVirtual> salas = professor.salasVirtuais;
-		render(salas);
+		
+		
+		SalaVirtual sala= SalaVirtual.findById(id);
+		List<CentroAprendizagem> listaCas = sala.centrosAprendizagem;
+		
+		render(salas, listaCas);
+		
+		
 	}
 	
 	public static void novaSalaVirtualAlunos(){

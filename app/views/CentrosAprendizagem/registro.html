@@ -8,10 +8,10 @@
                             <div class="card-body">
                              <h4 class="card-title">Informações</h4>
                                 <div class="basic-form">
-                                    <form action="@{CentrosAprendizagem.salvar(salaVirtual = salaVirtual)}">
+                                    <form action="@{centrosAprendizagem.salvar(salaVirtual = salaVirtual)}" method="post">
                                     
                                     
-                                    	<input type="hidden" class="form-control" name="c.idSalaVirtual" value="${salaVirtual}">
+                                    	<input type="hidden" class="form-control" name="idSalaVirtual" value="${salaVirtual}">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label>Data</label>
