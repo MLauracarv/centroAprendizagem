@@ -13,13 +13,11 @@ import javax.persistence.OneToMany;
 import play.db.jpa.Model;
 
 @Entity
-public class Frequencia extends Model {
+public class Frequencia extends Model implements Comparable<Frequencia>{
 
-	//public Long id_salaVirtual;
-	//public Long id_aluno;
-	//public Long id_CA;
 	public Integer grauParticipacao;
 	public Integer grauFrequencia;
+	public Integer soma;
 
 	
 	@ManyToOne
@@ -29,4 +27,15 @@ public class Frequencia extends Model {
 	@ManyToOne
 	@JoinColumn(name="idCa")
 	public CentroAprendizagem centroAprendizagem;
+
+	@Override
+	public int compareTo(Frequencia freq) {
+		return (freq.soma - this.soma );
+	}
+	
+	
+	
+
+	
+	
 }
