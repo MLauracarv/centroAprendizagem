@@ -36,12 +36,8 @@ public class SalasVirtuais extends Controller {
 			listaPaginadaAlunos = listaPaginadaAlunos; 
 		}
 		 
-		//List<CentroAprendizagem> listaCas = sala.centrosAprendizagem;
-		//System.out.println(listaCas);
 		 List<CentroAprendizagem> listaCas = sala.centrosAprendizagem;
-			System.out.println(listaCas);
-			
-		 
+		
 		 renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s, listaPaginadaAlunos, listaCas);
 	}
 	
@@ -54,8 +50,6 @@ public class SalasVirtuais extends Controller {
 		 renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html", sala, s, listaPaginadaAlunos);
 	}
 	 
-	
-	
 	public static void editar(long id) {
 		SalaVirtual s = SalaVirtual.findById(id);
 		List<Professor> professores = Professor.findAll();
@@ -65,7 +59,6 @@ public class SalasVirtuais extends Controller {
 	public static void autenticarCodigo(String codigo, SalaVirtual s) {
 		SalaVirtual salaVirtual= SalaVirtual.find("codigo = ?", codigo).first();
 		
-		
 		String idA = session.get("idAluno");
 		Long idTeste= Long.valueOf(idA);
 		Aluno aluno = Aluno.findById(idTeste);
@@ -74,7 +67,6 @@ public class SalasVirtuais extends Controller {
 					SalasVirtuais.entrarNovaSalaVirtual();	
 				}
 				
-					
 				Long idSala = salaVirtual.id;
 				SalaVirtual sala  = SalaVirtual.findById(idSala);
 				s =  sala;
@@ -92,15 +84,12 @@ public class SalasVirtuais extends Controller {
 	}
 	
 	public static void mostrarSala(long i) {
-
-	
 		SalaVirtual salaVirtual= SalaVirtual.findById(i);
 		renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html",  salaVirtual);			
 	}
 	
-	
+	//???
 	public static void salvar(SalaVirtual s) {
-		
 		if(s.id == null) {
 			s.save();
 			detalhes(s.id, s);	
