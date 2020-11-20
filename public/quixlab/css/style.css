@@ -97,6 +97,13 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 *::after {
   box-sizing: border-box; }
 
+.test {
+  display: flex;
+  justify-content: space-between;
+  width: 20rem;
+  border: .1rem red solid;
+}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;

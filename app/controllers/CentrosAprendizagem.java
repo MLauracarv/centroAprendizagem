@@ -50,59 +50,26 @@ public class CentrosAprendizagem extends Controller {
 				System.out.println(f.grauParticipacao = participacao.get(i));
 				f.centroAprendizagem = centro;
 				f.aluno = aluno;
-				//Aluno a = new Aluno();
-				//a.soma = frequencia.get(i)+ participacao.get(i);
-				//a.pontos = frequencia.get(i)+ participacao.get(i);
-				
-				
+				f.id_Sala = salaVirtual;
 				f.save();
 				
 				Aluno a = Aluno.findById(alunos.get(i).id);
 				System.out.println();
 				System.out.println("NOME DO ALUNO "+a.nome);
-				
-			
 				System.out.println("QUANTOS ELE TEM: " +a.pontos);
 				a.pontos = a.pontos + f.grauFrequencia + f.grauParticipacao;
 				System.out.println("aluno "+ a.nome);
+				System.out.println("somaAluno: "+ f.somaAluno);
 				System.out.println("QUAANTOS pontos ELE FICOU "+ a.pontos);
 				a.save();
-				
-				//calcular(f, a);
 				System.out.println();
-			}
-			
-			
-			
-			
-			
-			
-			//int n = 1;
-			//while( n < 3) {
-				
-			//	for(Integer i3 = 0; i3 < alunos.size(); i3++){
-			//		System.out.println(alunos);
-				
-			//	pontos += alunos.get(i3).pontos;
+				}
+		}
 
-			/*}
-				System.out.println("while: " + pontos);
-				n++;
-			}
-			
-			teste.add(pontos);
-			}
-			
-			Collections.sort(teste);
-		
-			System.out.println("LISTA ORDENADA");
-			for(Integer i1 = 0; i1 < teste.size(); i1++) {
-			System.out.println("RESULTADO "+ teste.get(i1) );
-			*/}	
-		
 	
 			render(id_CA, salaVirtual, listaPaginadaAlunos, alunos, frequencia);
 			
+	
 	}
 	
 	
@@ -139,9 +106,17 @@ public class CentrosAprendizagem extends Controller {
 		
 	}
 	
-	public static void ranking() {
-		Aluno aluno;
-		render();
+	public static void ranking(Long salaVirtual) {
+		SalaVirtual sala = SalaVirtual.findById(salaVirtual);
+		List<Aluno> alunos = sala.alunos;
+		Collections.sort(alunos);
+		
+		System.out.println("LISTA ORDENADA");
+		for(int a1 = 0; a1 < alunos.size(); a1++) {
+			System.out.println(alunos.get(a1).nome+"---"+ alunos.get(a1).getPontosPorSala(salaVirtual));
+		}
+		
+		render(alunos, salaVirtual);
 	}
 
 	

@@ -15,22 +15,16 @@ import play.db.jpa.Model;
 import play.mvc.Scope.Session;
 
 @Entity
-public class Aluno extends Model {
-//implements Comparable<Aluno>{
+public class Aluno extends Model implements Comparable<Aluno>{
 	public String nome;
 	public Long matricula;
 	public String email;
 	public String senha;
 	public int pontos;
 	
-	//ArrayList <Integer > var= new ArrayList();
-	//var.add(get.frequencia() + getpaticipacao);
-	
 	public int getPontos() {
 		return pontos;
 	}
-	
-	
 	
 	public TipoUsuario tipoUsuario;
 	
@@ -41,19 +35,23 @@ public class Aluno extends Model {
 	@ManyToMany(mappedBy="alunos")
 	public List<SalaVirtual> salasVirtuais;
 	
-	//public static Integer soma = 0;
-	
-	
-	
-	/*@Override
-		public int compareTo(Aluno a) {
-			return (this.soma - a.soma);
-			
-	*/	
-	
-	//public static void calcularPontuacao(long idAluno, long id_CA, Aluno a, Frequencia freq) {
+	public int getPontosPorSala(Long salaId) {
+		List<Frequencia> frequencias = Frequencia.find("aluno=? and id_Sala=?", this, salaId).fetch();
 		
-	//}
+		int soma = 0;
+		for(int i = 0; i<frequencias.size();i++) {
+			soma += frequencias.get(i).grauFrequencia + frequencias.get(i).grauParticipacao;
+		}
+		return soma;
+		//metodo para comparar pela soma
+	}
+
+	@Override
+		public int compareTo(Aluno a) {
+			return (a.pontos - this.pontos);
+			
+	}	
+	
 	
 	
 	

@@ -19,7 +19,8 @@ public class Frequencia extends Model {
 
 	public Integer grauParticipacao;
 	public Integer grauFrequencia;
-	//public Integer soma;
+	public int somaAluno;
+	public Long id_Sala;
 	
 
 	
