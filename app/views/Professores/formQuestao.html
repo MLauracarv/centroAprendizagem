@@ -1,0 +1,87 @@
+#{extends 'main.html' /}
+#{set title:'Formulário de questão' /}
+
+</div> 
+	<h1 style = "margin-left: 10px;"><input type="text" placeholder="Título da Questão"></h1>
+    <div class="col-lg-12">
+    	<div class="card">
+        	<div class="card-body">
+             	<div class="basic-form">
+                        			<form>
+                                        <div class="form-group">
+                                            <textarea class="form-control h-150px" rows="6" id="comment" placeholder = "Enunciado da questão"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <div class="col-lg-12">
+         		<div class="form-group col-md-4">
+             									<label style = "font-size: 25px">Tipo de questão</label>
+                                                <select id="inputState" class="form-control">
+                                                    <option selected="selected">Selecione o tipo de questão</option>
+                                                    <option value = "discursiva">Discursiva</option>
+                                                    <option value = "objetiva">Objetiva</option>                                         
+                                                </select>
+                                            </div>
+                                        </div>
+             #{if}
+             	<div class="col-lg-12">
+                        <div class="card">
+                            	<div class="card-body">
+                                	<div class="basic-form">
+                                    	<form>
+                                        	<div class="form-group">
+                                            	<div class="radio mb-3">
+                                                	<label>
+                                                    	<input type="radio" name="optradio"><input type="text" name="nomeOpcao">
+                                                	</label>
+                                                
+                                            	</div>
+                                            	<div class="radio mb-3">
+                                                	<label>
+                                                    	<input type="radio" name="optradio"><input type="text" name="nomeOpcao">
+                                                	</label>
+                                            	</div>
+                                            	<div class="radio mb-3">
+                                                	<label>
+                                                    	<input type="radio" name="optradio"><input type="text" name="nomeOpcao">
+                                                	</label>
+                                            	</div>
+                                            	<div class="radio mb-3">
+                                                	<label>
+                                                    	<input type="radio" name="optradio"><input type="text" name="nomeOpcao">
+                                                	</label>
+                                            	</div>
+                                            	<div class="radio mb-3">
+                                                	<label>
+                                                    	<input type="radio" name="optradio"><input type="text" name="nomeOpcao">
+                                                	</label>
+                                            	</div>
+                                            	<div class="email-left-box" style="margin-left:-20px;">
+                                                	<a  href="email-compose.html" class="btn btn-primary btn-block">Confirmar</a>
+                                            	</div>
+                                        	</div>
+                                    	</form>
+                                	</div>
+                            	</div>
+                        	</div>
+                    	</div>
+                    #{/if}
+                    #{else}
+                     	<div class="col-lg-12">
+                        	<div class="card">
+                            	<div class="card-body">
+                                	<div class="basic-form">
+                                    	<form>
+                                        	<div class="form-group">
+                                            	<label style = "font-size: 25px">Resposta:</label>
+                                            	<textarea class="form-control h-150px" rows="6" id="comment"></textarea>
+                                        	</div>
+                                    	</form>
+                                	</div>
+                            	</div>
+                        	</div>
+                    	</div>
+                    #{/else}
