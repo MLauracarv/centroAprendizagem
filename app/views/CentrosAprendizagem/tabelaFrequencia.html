@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Rancking' /}
+#{set title:'Frequência e participação' /}
 
 
 <div class="container-fluid">
@@ -10,25 +10,25 @@
 							<div class="col-xl-12">
                         		<div class="card">
                             		<div class="card-body">
-                                	<h4 class="card-title">Ranking</h4>
+                                	<h4 class="card-title">Confira sua frequência a participação!</h4>
                                 		<div class="basic-list-group">
                                     	<ul class="list-group">
                                        <table class="table table-striped table-bordered zero-configuration">
                                			
                                     		<thead>
                                             	<tr>
-													<th style = "background: #836FFF; color: white; position: center">Colocação</th>                                            	
-                                            		<th style = "padding: 8px; width: 490px; height:50px ; margin-top: 1px; margin-left: 23px; margin-right: 15px; background: #836FFF; color: white; position: center">Jogador</th>
-                                                	<th style = "background: #836FFF; color: white; position: center">Pontuação</th>
+													<th style = "padding: 8px; width: 490px; height:50px ; margin-top: 1px; margin-left: 23px; margin-right: 15px; background: 	#2AD73B; color: white; position: center">Jogador</th>                                            	
+                                            		<th style = "background: #2AD73B; color: white; position: center">Frequência</th>
+                                                	<th style = "background: #2AD73B; color: white; position: center">Participação</th>
                                             	</tr>
                                         	</thead>
                                         		
-                                        		#{list items: listaAlunos, as: 'aluno'} 
+                                        		#{list items: alunos, as: 'aluno'} 
                                         			<tbody>
                                         				<tr>
-                                               				 <td style = "color: black; position: center">1°</td>
+                                               				 <td style = "color: black; position: center"></td>
                                                 			 <td style = "color: black; position: center">${aluno.nome}</td>
-                                                         	 <td style = "color: black; position: center">${aluno.getPontosPorSala(salaVirtual)}</td> 
+                                                         	 <td style = "color: black; position: center">${aluno.getFrequencia(salaVirtual)}</td> 
                                               			</tr>
                                        		
                                        		

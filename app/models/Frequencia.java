@@ -15,14 +15,11 @@ import play.db.jpa.Model;
 
 @Entity
 public class Frequencia extends Model {
-	// implements Comparable<Frequencia>
-
+	
 	public Integer grauParticipacao;
 	public Integer grauFrequencia;
-	public int somaAluno;
-	public Long id_Sala;
-	
 
+	
 	
 	@ManyToOne
 	@JoinColumn(name="idAluno")
@@ -31,11 +28,11 @@ public class Frequencia extends Model {
 	@ManyToOne
 	@JoinColumn(name="idCa")
 	public CentroAprendizagem centroAprendizagem;
+	
+	@ManyToOne
+	@JoinColumn(name="idSala")
+	public SalaVirtual salas;
 
-	//@Override
-	//public int compareTo(Frequencia freq) {
-	//	return (this.soma - freq.soma);
-		
-	//}
+	
 		
 }

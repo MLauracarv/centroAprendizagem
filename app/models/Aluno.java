@@ -36,13 +36,32 @@ public class Aluno extends Model implements Comparable<Aluno>{
 	public List<SalaVirtual> salasVirtuais;
 	
 	public int getPontosPorSala(Long salaId) {
-		List<Frequencia> frequencias = Frequencia.find("aluno=? and id_Sala=?", this, salaId).fetch();
+		List<Frequencia> frequencias = Frequencia.find("aluno=? and IdSala=?", this, salaId).fetch();
 		
 		int soma = 0;
 		for(int i = 0; i<frequencias.size();i++) {
 			soma += frequencias.get(i).grauFrequencia + frequencias.get(i).grauParticipacao;
 		}
 		return soma;
+		//metodo para comparar pela soma
+	}
+	
+	public Integer[] getFrequencia(Long salaId) {
+		List<Frequencia> frequencias = Frequencia.find("aluno=? and id_Sala=?", this, salaId).fetch();
+		
+		Integer frequencia = 0;
+		int  participacao = 0;
+		Integer[] retorno = new Integer[2];
+		for(int i = 0; i<frequencias.size();i++) {
+			frequencia = frequencias.get(i).grauFrequencia; 
+			participacao = frequencias.get(i).grauParticipacao;
+			retorno[0] = frequencia;
+			retorno[1] = participacao;
+			
+		}
+		return retorno;
+		
+		//return participacao;
 		//metodo para comparar pela soma
 	}
 

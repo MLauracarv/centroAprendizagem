@@ -27,13 +27,19 @@ public class SalaVirtual extends Model{
 	@JoinTable(name="salaVirtual_aluno")
 	public List<Aluno> alunos;
 	
-	//onToMany
 	@ManyToMany
 	@JoinTable(name="salaVirtual_professor")
 	public List<Professor> professores;
 
-	@OneToMany(mappedBy="salaVirtual")
+	@OneToMany
+	@JoinColumn(name="IdSalaVirtual")
 	public List<CentroAprendizagem> centrosAprendizagem;
+	
+	/*
+	@OneToMany
+	@JoinColumn(name="IdSalaVirtual")
+	public List<Frequencia> frequencias;
+	*/
 	
 	//quando o relacionamento é manyToMany o BD vai criar uma terceira tabela
 	

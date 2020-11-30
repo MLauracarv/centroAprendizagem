@@ -47,8 +47,15 @@ public class SalasVirtuais extends Controller {
 		 List<Aluno> alunos = sala.alunos;
 		 ValuePaginator listaPaginadaAlunos = new ValuePaginator(alunos);
 		 listaPaginadaAlunos.setPageSize(2);
-		 renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html", sala, s, listaPaginadaAlunos);
+		 
+		 List<CentroAprendizagem> listaCas = sala.centrosAprendizagem;
+		 renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html", sala, s, listaPaginadaAlunos, listaCas);
+		 
 	}
+		 
+		 
+		 
+		 
 	 
 	public static void editar(long id) {
 		SalaVirtual s = SalaVirtual.findById(id);
@@ -156,8 +163,13 @@ public class SalasVirtuais extends Controller {
 	}
 	
 	public static void novaSalaVirtualAlunos(){
+		
+	
+		
 		render();
 	}
+	
+		
 	
 	public static void entrarNovaSalaVirtual() {
 		render();

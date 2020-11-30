@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -50,7 +51,8 @@ public class CentrosAprendizagem extends Controller {
 				System.out.println(f.grauParticipacao = participacao.get(i));
 				f.centroAprendizagem = centro;
 				f.aluno = aluno;
-				f.id_Sala = salaVirtual;
+				f.salas = sala;
+				//f.id_Sala = salaVirtual;
 				f.save();
 				
 				Aluno a = Aluno.findById(alunos.get(i).id);
@@ -59,7 +61,7 @@ public class CentrosAprendizagem extends Controller {
 				System.out.println("QUANTOS ELE TEM: " +a.pontos);
 				a.pontos = a.pontos + f.grauFrequencia + f.grauParticipacao;
 				System.out.println("aluno "+ a.nome);
-				System.out.println("somaAluno: "+ f.somaAluno);
+				
 				System.out.println("QUAANTOS pontos ELE FICOU "+ a.pontos);
 				a.save();
 				System.out.println();
@@ -72,18 +74,6 @@ public class CentrosAprendizagem extends Controller {
 	
 	}
 	
-	
-	
-	/*public static void calcular(Frequencia f, Aluno a) {
-		f.aluno = a;
-		a.pontos = f.grauFrequencia + f.grauParticipacao;
-		System.out.println("aluno "+ a);
-		System.out.println("pontos "+ a.pontos);
-		
-		
-		
-		
-	}*/
 		
 	public static void salvar( CentroAprendizagem c, Long idSalaVirtual) {
 		
@@ -109,15 +99,57 @@ public class CentrosAprendizagem extends Controller {
 	public static void ranking(Long salaVirtual) {
 		SalaVirtual sala = SalaVirtual.findById(salaVirtual);
 		List<Aluno> alunos = sala.alunos;
-		Collections.sort(alunos);
 		
-		System.out.println("LISTA ORDENADA");
-		for(int a1 = 0; a1 < alunos.size(); a1++) {
-			System.out.println(alunos.get(a1).nome+"---"+ alunos.get(a1).getPontosPorSala(salaVirtual));
+		List<Aluno> listaAlunos= new ArrayList<>();
+		for(int a = 0; a < alunos.size(); a++) {
+			System.out.println(alunos.get(a).nome+"---"+ alunos.get(a).getPontosPorSala(salaVirtual));
+			listaAlunos.add(alunos.get(a));
 		}
+		
+		listaAlunos.sort(new Comparator <Aluno>() {
+		
+			@Override
+			public int compare(Aluno aluno1, Aluno aluno2) {
+				System.out.println("TESTE 1 "+ aluno1);
+				System.out.println("TESTE 2 "+ aluno2);
+				System.out.println("");
+				if(aluno1.getPontosPorSala(salaVirtual) < aluno2.getPontosPorSala(salaVirtual)) {
+					return 1;
+					
+				}
+				if(aluno2.getPontosPorSala(salaVirtual) < aluno1.getPontosPorSala(salaVirtual) ) {
+					return -1;
+				}
+				return 0;
+	
+			
+		}
+		});
+		
+		
+		System.out.println("TESTEEE: LISTA ORDENADA");
+		System.out.println(listaAlunos);
+		System.out.println(listaAlunos.size());
+	
+		render(salaVirtual, listaAlunos);
+	}
+	
+	public static void tabelaFrequencia(Long salaVirtual) {
+		
+		SalaVirtual sala = SalaVirtual.findById(salaVirtual);
+		List<Aluno> alunos = sala.alunos;
+		
+		for(int a1 = 0; a1 < alunos.size(); a1++) {
+			System.out.println(alunos.get(a1).nome+"---"+ alunos.get(a1).getFrequencia(salaVirtual));
+			alunos.get(a1).getFrequencia(salaVirtual);
+		}
+		
 		
 		render(alunos, salaVirtual);
 	}
+		
+	
+	
 
 	
 }
