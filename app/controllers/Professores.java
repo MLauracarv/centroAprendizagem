@@ -35,6 +35,11 @@ public class Professores extends Controller {
 	}
 	
 	
+	public static void formQuestao() {
+		render();
+	}
+	
+	
 	
 	
 	

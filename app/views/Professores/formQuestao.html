@@ -1,87 +1,133 @@
 #{extends 'main.html' /}
-#{set title:'Formul�rio de quest�o' /}
+#{set title:'Novo questionário' /}
 
-</div> 
-	<h1 style = "margin-left: 10px;"><input type="text" placeholder="T�tulo da Quest�o"></h1>
-    <div class="col-lg-12">
-    	<div class="card">
-        	<div class="card-body">
-             	<div class="basic-form">
-                        			<form>
+<div class="container-fluid">
+     
+
+						<div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                            	 
+                                <h4 class="card-title"><li class="list-group-item active">Enunciado da questão</li></h4>
+                                <div class="basic-form">
+                                    <form>
                                         <div class="form-group">
-                                            <textarea class="form-control h-150px" rows="6" id="comment" placeholder = "Enunciado da quest�o"></textarea>
+                                            
+                                            <textarea class="form-control h-150px"  rows="2" cols="100" id="comment"></textarea>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-            <div class="col-lg-12">
-         		<div class="form-group col-md-4">
-             									<label style = "font-size: 25px">Tipo de quest�o</label>
-                                                <select id="inputState" class="form-control">
-                                                    <option selected="selected">Selecione o tipo de quest�o</option>
-                                                    <option value = "discursiva">Discursiva</option>
-                                                    <option value = "objetiva">Objetiva</option>                                         
-                                                </select>
-                                            </div>
+                    
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title"><li class="list-group-item active">Anexar arquivo</li></h4>
+                                <div class="basic-form">
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="file" class="form-control-file">
                                         </div>
-             #{if}
-             	<div class="col-lg-12">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                       <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                 <h4 class="card-title"><li class="list-group-item active">A questão será</li></h4>
+                                <div class="basic-form">
+                                    <form>
+                                        <div class="form-group">
+                                            <select class="form-control form-control-lg">
+                                                <option>Objetiva</option>
+                                                <option>Discursiva</option>
+                                            </select>
+                                        </div>
+            
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                       #{if}
+                    <div class="col-lg-12">
                         <div class="card">
                             	<div class="card-body">
+                            	<h4 class="card-title"><li class="list-group-item active">Objetivas</li></h4>
                                 	<div class="basic-form">
                                     	<form>
                                         	<div class="form-group">
                                             	<div class="radio mb-3">
                                                 	<label>
-                                                    	<input type="radio" name="optradio"><input type="text" name="nomeOpcao">
+                                                    	<strong>Opção 1</strong> <textarea class="form-control h-150px"  rows="1" cols="130" id="comment"></textarea>
                                                 	</label>
                                                 
                                             	</div>
                                             	<div class="radio mb-3">
                                                 	<label>
-                                                    	<input type="radio" name="optradio"><input type="text" name="nomeOpcao">
+                                                    		<strong>Opção 2</strong> <textarea class="form-control h-150px"  rows="1" cols="130" id="comment"></textarea>
                                                 	</label>
                                             	</div>
                                             	<div class="radio mb-3">
                                                 	<label>
-                                                    	<input type="radio" name="optradio"><input type="text" name="nomeOpcao">
+                                                    		<strong>Opção 3</strong> <textarea class="form-control h-150px"  rows="1" cols="130" id="comment"></textarea>
                                                 	</label>
                                             	</div>
                                             	<div class="radio mb-3">
                                                 	<label>
-                                                    	<input type="radio" name="optradio"><input type="text" name="nomeOpcao">
+                                                    		<strong>Opção 4</strong> <textarea class="form-control h-150px"  rows="1" cols="130" id="comment"></textarea>
                                                 	</label>
                                             	</div>
                                             	<div class="radio mb-3">
                                                 	<label>
-                                                    	<input type="radio" name="optradio"><input type="text" name="nomeOpcao">
+                                                    		<strong>Opção 5</strong> <textarea class="form-control h-150px"  rows="1" cols="130" id="comment"></textarea>
                                                 	</label>
                                             	</div>
-                                            	<div class="email-left-box" style="margin-left:-20px;">
-                                                	<a  href="email-compose.html" class="btn btn-primary btn-block">Confirmar</a>
-                                            	</div>
+                                            	
                                         	</div>
                                     	</form>
-                                	</div>
-                            	</div>
-                        	</div>
-                    	</div>
-                    #{/if}
+                                       </div>
+                           		 </div>
+                       	 </div>
+                    </div>
+                      #{/if}
                     #{else}
-                     	<div class="col-lg-12">
-                        	<div class="card">
-                            	<div class="card-body">
-                                	<div class="basic-form">
-                                    	<form>
-                                        	<div class="form-group">
-                                            	<label style = "font-size: 25px">Resposta:</label>
-                                            	<textarea class="form-control h-150px" rows="6" id="comment"></textarea>
-                                        	</div>
-                                    	</form>
-                                	</div>
-                            	</div>
-                        	</div>
-                    	</div>
+                    
                     #{/else}
+                    
+                    
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                            	 
+                                <h4 class="card-title"><li class="list-group-item active">Comentário da questão</li></h4>
+                                <div class="basic-form">
+                                    <form>
+                                        <div class="form-group">
+                                            
+                                            <textarea class="form-control h-150px"  rows="2" cols="100" id="comment" placeholder="Após o aluno responder a questão aparecerá o comentário acerca da resolução da atividade"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                  <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                        <a href="#" data-toggle="modal" data-target="#add-category" class="btn btn-primary btn-block"><i class="ti-plus f-s-12 m-r-5"></i> Criar nova questão</a>
+                                        <a href="#" data-toggle="modal" data-target="#add-category" class="btn btn-primary btn-block"><i class="ti-plus f-s-12 m-r-5"></i> Salvar formulário</a>
+                                        
+                  </div>
+               </div>
+            </div>    
+              
+             </div>
