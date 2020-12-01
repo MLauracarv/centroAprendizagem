@@ -61,6 +61,10 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+ 
+ 
+
+
 :root {
   --blue: #324cdd;
   --indigo: #6610f2;
@@ -329,6 +333,7 @@ legend {
   line-height: inherit;
   color: inherit;
   white-space: normal; }
+  
 
 progress {
   vertical-align: baseline; }
