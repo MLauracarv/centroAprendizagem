@@ -1,19 +1,19 @@
-var select = document.querySelector('select');
-
-select.addEventListener('change', setTipoQuestao);
-
-function definirTipo(){
-	var bloco = document.getElementById("teste");
-	var escolha = select.value;
-	var tipos = document.getElementsByClass(); 
-	
-	
-			if(escolha === "objetiva") {
-			bloco.innerHTML = "" + tipos[0] + "";
-			}
-	
-	else{
-		bloco.setAttribute("class", tipos[1]);
-		eeee
+function definirBloco(){
+	var select = document.getElementById('1');
+		var option = select.options[select.selectedIndex];
+		console.log(option);
+		if (option.value == "objetiva") {
+			document.getElementById("objetiva").style.display = "block";
+			document.getElementById("discursiva").style.display = "none";
+		} else if (option.value == "discursiva") {
+			document.getElementById("discursiva").style.display = "block";
+			document.getElementById("objetiva").style.display = "none";
+		}
 	}
+
+
+function novaQuestao(){
+	document.getElementById("newQuestao").style.display = "block";
+
 }
+

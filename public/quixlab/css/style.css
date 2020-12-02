@@ -334,6 +334,17 @@ legend {
   color: inherit;
   white-space: normal; }
   
+#discursiva{
+display: none;
+
+}
+
+#objetiva{
+display: none;
+
+}
+
+
 
 progress {
   vertical-align: baseline; }
