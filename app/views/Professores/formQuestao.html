@@ -3,7 +3,8 @@
 <script src="@{'public/javascripts/tipoQuestao.js'}"></script>
 
 
-
+	<ul id="lista">
+		<li>
 <div class="container-fluid" id="newQuestao">
 
 						<div class="col-lg-12">
@@ -143,17 +144,19 @@
                     </div>
                  
                  
-                 
-                 
+                 </li>
+             	</ul>    
                   <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                            			<button onclick ="novaQuestao()" class="btn login-form__btn submit w-100">Cadastrar</button><br/>
-                                        <button onclick ="novaQuestao()" type="button" class="btn mb-1 btn-success">Registrar novo CA</button>
-                                        <a href="#" onclick ="novaQuestao()"  data-toggle="modal" data-target="#add-category" class="btn btn-primary btn-block"><i class="ti-plus f-s-12 m-r-5"></i> Salvar formulário</a>
+                            			<button onclick ="adicionarLi()" class="btn login-form__btn submit w-100">Cadastrar</button><br/>
+                                        <button onclick ="adicionarLi()" type="button" class="btn mb-1 btn-success">Registrar novo CA</button>
+                                        <a href="#" onclick ="adicionarLi()"  data-toggle="modal" data-target="#add-category" class="btn btn-primary btn-block"><i class="ti-plus f-s-12 m-r-5"></i> Salvar formulário</a>
                                         
                   </div>
                </div>
             </div>    
               
              </div>
+             
+             

@@ -17,3 +17,24 @@ function novaQuestao(){
 
 }
 
+function adicionarLi() {
+  var questao  = document.getElementById("NewQuestao").value;
+  
+  
+  var lista  = document.getElementById("lista").innerHTML;
+  lista = lista +"<li>"+questao+"</li>";
+
+  document.getElementById("lista").innerHTML = lista;
+  
+  //lista = lista +"<li>"+ document.getElementById("newQuestao")+"</li>";
+  //document.getElementById("lista").innerHTML = lista;
+  //document.getElementById("lista").style.display = "block";
+  //document.getElementById("lista").innerHTML;
+  //document.getElementById("NewQuestao").innerHTML;
+ //var fru = document.getElementById("frutas").value;
+  
+  
+
+  
+}
+
