@@ -1,4 +1,4 @@
-package jobs;
+/*
 
 import enums.TipoUsuario;
 import models.Aluno;
@@ -14,7 +14,7 @@ public class inicializador extends Job{
 	@Override
 	public void doJob() throws Exception {
 		
-		if(Aluno.count() == 0) {
+		if(Aluno.count() == 0) {k
 			
 			Aluno  aluno1 = new Aluno();
 			aluno1.nome = "Aluno1";
@@ -71,3 +71,4 @@ public class inicializador extends Job{
 	}
 
 }
+*/
