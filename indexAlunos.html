@@ -1,0 +1,138 @@
+#{extends 'main-alunos.html' /}
+#{set title:'Página Inicial' /}
+
+
+  <div class="container-fluid mt-3">
+
+  			<ul class="list-group">
+                      <table class="table table-striped table-bordered zero-configuration">
+                               			
+                                    		<thead>
+                                            	<tr>
+													<th style = "background: #836FFF; color: white; position: center">Segunda</th> 
+													<th style = "background: #836FFF; color: white; position: center">Terça</th>                                            	
+													<th style = "background: #836FFF; color: white; position: center">Quarta</th>                                            	
+													<th style = "background: #836FFF; color: white; position: center">Quinta</th>                                            	
+													<th style = "background: #836FFF; color: white; position: center">Sexta</th>                                            	                                           	
+
+                                            	</tr>
+                                        	</thead>
+                                        		
+                                        		
+                                        			<tbody>
+                                        			
+                                        		
+                                        				<tr>
+                                        				
+                                        				#{if salasAlunosSegunda == null}
+                                               					 <td style = "color: black; position: center">Livre</td>
+                                               					
+                                               			#{/if}
+                                               			
+                                               			#{else}
+                                        					#{list items: salasAlunosSegunda, as: 'salaVirtual'}
+                                               				 <br><td style = "color: black; position: center">CA: ${salaVirtual.disciplina}.Horário: ${salaVirtual.horario}.</td></br>
+                                               				#{/list}
+                                               			#{/else}
+                                               			
+                                               			
+                                               			
+                                               			#{if salasAlunosTerça== null}
+                                               					 <td style = "color: black; position: center">Livre</td>
+                                               			#{/if}
+                                               			
+                                               			#{else}
+                                        					#{list items: salasAlunosTerça, as: 'salaVirtual'}
+                                               				 <td style = "color: black; position: center">CA: ${salaVirtual.disciplina}.Horário: ${salaVirtual.horario}.</td>
+                                               				#{/list}
+                                               			#{/else}
+                                               	
+                                               	
+                                               			
+                                               			#{if salasAlunosQuarta== null}
+                                               					 <td style = "color: black; position: center">Livre</td>
+                                               			#{/if}
+                                               			
+                                               			#{else}
+                                        					#{list items: salasAlunosQuarta, as: 'salaVirtual'}
+                                               				 <td style = "color: black; position: center">CA: ${salaVirtual.disciplina}.Horário: ${salaVirtual.horario}.</td>
+                                               				#{/list}
+                                               			#{/else}
+                                               			
+                                               			
+                                               			
+                                               			
+                                               			#{if salasAlunosQuinta== null}
+                                               					 <td style = "color: black; position: center">Livre</td>
+                                               			#{/if}
+                                               			
+                                               			#{else}
+                                        					#{list items: salasAlunosQuinta, as: 'salaVirtual'}
+                                               				 <td style = "color: black; position: center">CA: ${salaVirtual.disciplina}.Horário: ${salaVirtual.horario}.</td>
+                                               				#{/list}
+                                               			#{/else}
+                                               			
+                                               			
+                                               			
+                                               			
+                                               			
+                                               			#{if salasAlunosSexta == null}
+                                               					 <td style = "color: black; position: center">Livre</td>
+                                               			#{/if}
+                                               			
+                                               			#{else}
+                                        					#{list items: salasAlunosSexta, as: 'salaVirtual'}
+                                               				 <td style = "color: black; position: center">CA: ${salaVirtual.disciplina}.Horário: ${salaVirtual.horario}.</td>
+                                               				#{/list}
+                                               			#{/else}
+                                               			
+                                               				
+                                               				
+                                               		
+                                       		
+                                       		
+                                       				</tbody>
+                                       			
+                                   		 </ul>
+  
+  
+   
+ </div>
+   <div class="container-fluid mt-3">
+  
+            	#{list items: salas, as: 'sala'}
+                <div class="card-inline-block">
+                <div class="d-inline-block">
+                        <div class="card gradient-3">
+                            <div class="card-body">
+                                <h3 class="card-title text-white"> ${sala.disciplina}</h3>
+                                <div class="d-inline-block">
+                                    <h2 class="text-white">${sala.nomeTurma}</h2>
+                                	<a href="@{SalasVirtuais.mostrarSalaAlunos( id = sala.id)}"><p class="text-white mb-0" style= "text-decoration:underline;" >Mais informações</p></a>
+                                </div>
+                                <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                #{/list}
+  </div>
+  
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+        
+
+    
+
+
+   
