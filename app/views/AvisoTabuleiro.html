@@ -1,0 +1,24 @@
+#{extends 'main-alunos.html' /}
+#{set title:'Centro de Aprendizagem Virtual' /} 
+#{ set 'moreStyles'}
+#{stylesheet 'play-pagination.css' /}
+#{/set}
+
+<div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                             <h4 class="card-title">Informações</h4>
+                                <div class="basic-form">
+                                    <form action="@{Tabuleiros.salvarTabuleiro(idSala = salaVirtual)}" method="post">
+                                    	<input type="hidden" class="form-control" name="idSalaVirtual" value="${salaVirtual}">
+                                            <div class="form-group col-md-6">
+                                                <label>O tabuleiro ainda não foi inicializado pelo seu professor. Peça para que ele inicialize no botão "Tabuleiro"!</label>
+                                            
+                                            </div>
+                                		</div>
+                          		 	</form>
+                               		 
+                               		  </div>
+                               		  </div> 
