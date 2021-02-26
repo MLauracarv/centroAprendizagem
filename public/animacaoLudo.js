@@ -1,9 +1,10 @@
-			var yellow = "#ffff00";
+var yellow = "#ffff00";
             var red = "#ff0000";
             var green = "#00ff00";
             var white = "#ffffff";
             var blue = "#0000CD";
 
+			/*Inicio do vetor de peças*/
             var trilhas = [
                 /*Home amarela*/
                 {i: 0, j: 9, color: white},
@@ -135,43 +136,44 @@
                 {i: 8, j: 5, color: green},
                 
             ];
-
+	
+			
             var pecas = [
                 /*Peças azuis*/
-                {i: 9, j: 9, color: blue, id: 0, pos: -1},
-                {i: 9, j: 14, color: blue, id: 1, pos: -1},
-                {i: 14, j: 9, color: blue, id: 2, pos: -1},
-                {i: 14, j: 14, color: blue, id: 3, pos: -1},
-                {i: 10, j: 10, color: blue, id: 4, pos: -1},
-                {i: 10, j: 13, color: blue, id: 5, pos: -1},
-                {i: 13, j: 10, color: blue, id: 6, pos: -1},
-                {i: 13, j: 13, color: blue, id: 7, pos: -1},
-                {i: 12, j: 11, color: blue, id: 8, pos: -1},
-                {i: 11, j: 12, color: blue, id: 9, pos: -1},
+                {i: 9, j: 9, color: blue, id: -1, pos: -1},
+                {i: 9, j: 14, color: blue, id: -1, pos: -1},
+                {i: 14, j: 9, color: blue, id: -1, pos: -1},
+                {i: 14, j: 14, color: blue, id: -1, pos: -1},
+                {i: 10, j: 10, color: blue, id: -1, pos: -1},
+                {i: 10, j: 13, color: blue, id: -1, pos: -1},
+                {i: 13, j: 10, color: blue, id: -1, pos: -1},
+                {i: 13, j: 13, color: blue, id: -1, pos: -1},
+                {i: 12, j: 11, color: blue, id: -1, pos: -1},
+                {i: 11, j: 12, color: blue, id: -1, pos: -1},
 
                 /*peças amarelas*/
-                {i: 0, j: 9, color: yellow, id: 10, pos: -1},
-                {i: 0, j: 14, color: yellow, id: 11, pos: -1},
-                {i: 5, j: 9, color: yellow, id: 12, pos: -1},
-                {i: 5, j: 14, color: yellow, id: 13, pos: -1},
-                {i: 1, j: 10, color: yellow, id: 14, pos: -1},
-                {i: 1, j: 13, color: yellow, id: 15, pos: -1},
-                {i: 2, j: 11, color: yellow, id: 16, pos: -1},
-                {i: 3, j: 12, color: yellow, id: 17, pos: -1},
-                {i: 4, j: 10, color: yellow, id: 18, pos: -1},
-                {i: 4, j: 13, color: yellow, id: 19, pos: -1},
+                {i: 0, j: 9, color: yellow, id: -1, pos: -1},
+                {i: 0, j: 14, color: yellow, id: -1, pos: -1},
+                {i: 5, j: 9, color: yellow, id: -1, pos: -1},
+                {i: 5, j: 14, color: yellow, id: -1, pos: -1},
+                {i: 1, j: 10, color: yellow, id: -1, pos: -1},
+                {i: 1, j: 13, color: yellow, id: -1, pos: -1},
+                {i: 2, j: 11, color: yellow, id: -1, pos: -1},
+                {i: 3, j: 12, color: yellow, id: -1, pos: -1},
+                {i: 4, j: 10, color: yellow, id: -1, pos: -1},
+                {i: 4, j: 13, color: yellow, id: -1, pos: -1},
 
                 /*peças verdes*/
-                {i: 0, j: 0, color: green, id: 20, pos: -1},
-                {i: 0, j: 5, color: green, id: 21, pos: -1},
-                {i: 5, j: 0, color: green, id: 22, pos: -1},
-                {i: 5, j: 5, color: green, id: 23, pos: -1},
-                {i: 1, j: 1, color: green, id: 24, pos: -1},
-                {i: 1, j: 4, color: green, id: 25, pos: -1},
-                {i: 4, j: 4, color: green, id: 26, pos: -1},
-                {i: 4, j: 1, color: green, id: 27, pos: -1},
-                {i: 2, j: 2, color: green, id: 28, pos: -1},
-                {i: 3, j: 3, color: green, id: 29, pos: -1},
+                {i: 0, j: 0, color: green, id: -1, pos: -1},
+                {i: 0, j: 5, color: green, id: -1, pos: -1},
+                {i: 5, j: 0, color: green, id: -1, pos: -1},
+                {i: 5, j: 5, color: green, id: -1, pos: -1},
+                {i: 1, j: 1, color: green, id: -1, pos: -1},
+                {i: 1, j: 4, color: green, id: -1, pos: -1},
+                {i: 4, j: 4, color: green, id: -1, pos: -1},
+                {i: 4, j: 1, color: green, id: -1, pos: -1},
+                {i: 2, j: 2, color: green, id: -1, pos: -1},
+                {i: 3, j: 3, color: green, id: -1, pos: -1},
 
                 /*
                 {i: 9, j: 0, color: white},
@@ -186,18 +188,20 @@
                 {i: 12, j: 2, color: white},
                 */
                 /*peças vermelhas*/
-                {i: 9, j: 0, color: red, id: 30, pos: -1},
-                {i: 9, j: 5, color: red, id: 31, pos: -1},
-                {i: 14, j: 0, color: red, id: 32, pos: -1},
-                {i: 14, j: 5, color: red, id: 33, pos: -1},
-                {i: 10, j: 1, color: red, id: 34, pos: -1},
-                {i: 10, j: 4, color: red, id: 35, pos: -1},
-                {i: 13, j: 1, color: red, id: 36, pos: -1},
-                {i: 13, j: 4, color: red, id: 37, pos: -1},
-                {i: 11, j: 3, color: red, id: 38, pos: -1},
-                {i: 12, j: 2, color: red, id: 39, pos: -1},
+                {i: 9, j: 0, color: red, id: -1, pos: -1},
+                {i: 9, j: 5, color: red, id: -1, pos: -1},
+                {i: 14, j: 0, color: red, id: -1, pos: -1},
+                {i: 14, j: 5, color: red, id: -1, pos: -1},
+                {i: 10, j: 1, color: red, id: -1, pos: -1},
+                {i: 10, j: 4, color: red, id: -1, pos: -1},
+                {i: 13, j: 1, color: red, id: -1, pos: -1},
+                {i: 13, j: 4, color: red, id: -1, pos: -1},
+                {i: 11, j: 3, color: red, id: -1, pos: -1},
+                {i: 12, j: 2, color: red, id: -1, pos: -1},
             ];
-
+            /*Fim do vetor de peças*/
+            
+          
             var caminho_amarelo = [
 
                 {i: 1, j: 8},
@@ -489,15 +493,37 @@
                 {i: 7, j: 10},
                 {i: 7, j: 9},
                 {i: 7, j: 8},
-
-               
-                /**/
-
                 
             ];
 
-           
-
+			function executarAjax() {
+				var ajaxRequest = new XMLHttpRequest();
+				ajaxRequest.onreadystatechange = function() {
+					if (ajaxRequest.readyState == 4 && ajaxRequest.status == 200) {
+						var dados = JSON.parse(ajaxRequest.responseText);
+						
+						for (var c = 0; c < dados.length; c++) {
+							if (pecas[c].id == -1) {
+								pecas[c].id = c;
+								
+								alert(pecas[c].id);
+								alert(dados[c].pontuacaoPorCa);
+								alert(pecas.pos);	
+								alert("olá");
+							}
+						}
+						
+						for (var contad = 0; contad < dados.length; contad++) {
+							atualizarPeca(contad, dados[contad].pontuacaoPorCA);
+							alert("achhou");
+							alert(pecas[contad].pos);
+						}									
+					}
+				}
+				ajaxRequest.open('GET', 'http://localhost:9000/centrosaprendizagem/serializardados?idSala=2', true);
+				ajaxRequest.send();	 	
+			}	
+			
             function desenharTabuleiro() {
                 var canvas = document.getElementById("tabuleiro");
                 var ctx = canvas.getContext("2d");
@@ -556,12 +582,15 @@
             }
 
             function atualizarPeca(id, pontos) {
+            	alert(id);
+            	alert(pontos);
                 for (var i = 0; i < pecas.length; ++i) {
                     if (pecas[i].id == id) { console.log("ACHOU");
                         pecas[i].pos = pecas[i].pos + pontos;
                     }
                 }
+                desenharTabuleiro();
             }
 
-            atualizarPeca(1, 40);
             desenharTabuleiro();
+            window.alert(executarAax())
