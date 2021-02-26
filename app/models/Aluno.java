@@ -16,11 +16,22 @@ import play.mvc.Scope.Session;
 
 @Entity
 public class Aluno extends Model implements Comparable<Aluno>{
+	@Expose
 	public String nome;
+	
+	@Expose
 	public Long matricula;
+	
+	@Expose
 	public String email;
+	
 	public String senha;
+	
 	public int pontos;
+	
+	@Expose
+	@Transient
+	public Integer pontuacaoPorCA;
 	
 	public int getPontos() {
 		return pontos;
