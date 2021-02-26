@@ -96,6 +96,25 @@ public class CentrosAprendizagem extends Controller {
 		
 	}
 	
+	public static void serializarDados(Long idSala) {
+		SalaVirtual sala = SalaVirtual.findById(idSala);
+		List <Aluno> alunosDaSala = sala.alunos;
+		System.out.println(sala);
+		
+		for (int c = 0; c < alunosDaSala.size(); c++) {
+			alunosDaSala.get(c).pontuacaoPorCA = 0;
+			alunosDaSala.get(c).pontuacaoPorCA = alunosDaSala.get(c).getPontosPorSala(idSala);	
+		}
+
+		System.out.println(alunosDaSala.size());
+		Gson gson = new GsonBuilder().create();
+		gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		String result = gson.toJson(alunosDaSala);
+		renderJSON(result);
+		render(idSala);
+	}
+	
+	
 	public static void ranking(Long salaVirtual) {
 		SalaVirtual sala = SalaVirtual.findById(salaVirtual);
 		List<Aluno> alunos = sala.alunos;
