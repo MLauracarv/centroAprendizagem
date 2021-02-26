@@ -8,6 +8,16 @@ public class Tabuleiros extends Controller {
 		render();
 	}
 	
+	public static void indexTabuleiroAlunos(Long idSala) {
+		Tabuleiro tabuleiro1 = Tabuleiro.find("idsalaVirtual = ?", idSala).first();
+		if (tabuleiro1 != null) {
+			render();
+		} else {
+			System.out.println("Esse tabuleiro não existe");
+			renderTemplate("Tabuleiros/AvisoTabuleiro.html");
+		}
+	}
+	
 	public static void formTabuleiro(Long salaVirtual) {
 		Tabuleiro tabuleiro1 = Tabuleiro.find("idSalaVirtual = ?", salaVirtual).first();
 		if(tabuleiro1 == null ) {
