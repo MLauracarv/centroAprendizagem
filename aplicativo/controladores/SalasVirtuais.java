@@ -1,9 +1,14 @@
 package controllers;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 
 import java.util.UUID;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import models.Aluno;
 import models.CentroAprendizagem;
@@ -11,8 +16,10 @@ import models.Professor;
 import models.SalaVirtual;
 import controllers.Alunos;
 import controllers.Professores;
-import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
+import play.data.validation.Valid;
+//import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
 import play.db.jpa.GenericModel.JPAQuery;
+import play.db.jpa.JPABase;
 import play.modules.paginate.ValuePaginator;
 import play.mvc.Controller;
 
@@ -35,10 +42,63 @@ public class SalasVirtuais extends Controller {
 		else {
 			listaPaginadaAlunos = listaPaginadaAlunos; 
 		}
-		 
 		 List<CentroAprendizagem> listaCas = sala.centrosAprendizagem;
 		
-		 renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s, listaPaginadaAlunos, listaCas);
+			List<Aluno> alunos = sala.alunos;
+			
+			List<Aluno> listaAlunosRanking= new ArrayList<>();
+			for(int a = 0; a < alunos.size(); a++) {
+				System.out.println(alunos.get(a).nome+"---"+ alunos.get(a).getPontosPorSala(sala.id));
+				listaAlunosRanking.add(alunos.get(a));
+			}
+			
+			listaAlunosRanking.sort(new Comparator <Aluno>() {
+			
+				@Override
+				public int compare(Aluno aluno1, Aluno aluno2) {
+					if(aluno1.getPontosPorSala(sala.id) < aluno2.getPontosPorSala(sala.id)) {
+						return 1;
+						
+					}
+					if(aluno2.getPontosPorSala(sala.id) < aluno1.getPontosPorSala(sala.id) ) {
+						return -1;
+					}
+					return 0;
+		
+				
+			}
+			});
+			List <Aluno> listaPodio = new ArrayList<>();
+			
+			if(listaAlunosRanking.size() == 0) {
+				listaPodio = null;
+			}
+			if(listaAlunosRanking.size() == 1) {
+				for(Integer a = 0; a <1; a++) {
+					listaPodio.add(listaAlunosRanking.get(a));
+				}	
+			}
+			if(listaAlunosRanking.size() == 2) {
+				for(Integer a = 0; a <2; a++) {
+					listaPodio.add(listaAlunosRanking.get(a));
+				}	
+			}
+			if(listaAlunosRanking.size() > 2) {
+				
+				for(Integer a = 0; a <3; a++) {
+					listaPodio.add(listaAlunosRanking.get(a));
+				}
+			}
+			
+		
+			
+		
+			
+	
+		 System.out.println("PODIO "+listaPodio);
+		
+		 long salaVirtual = sala.id;
+		 renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s, listaPaginadaAlunos, listaCas, listaAlunosRanking, listaPodio, salaVirtual);
 	}
 	
 	 
@@ -53,15 +113,6 @@ public class SalasVirtuais extends Controller {
 		 
 	}
 		 
-		 
-		 
-		 
-	 
-	public static void editar(long id) {
-		SalaVirtual s = SalaVirtual.findById(id);
-		List<Professor> professores = Professor.findAll();
-		renderTemplate("SalasVirtuais/formSalasVirtuais.html", s, professores);
-	}
 	
 	public static void autenticarCodigo(String codigo, SalaVirtual s) {
 		SalaVirtual salaVirtual= SalaVirtual.find("codigo = ?", codigo).first();
@@ -95,8 +146,13 @@ public class SalasVirtuais extends Controller {
 		renderTemplate("SalasVirtuais/novaSalaVirtualAlunos.html",  salaVirtual);			
 	}
 	
-	//???
-	public static void salvar(SalaVirtual s) {
+	
+	public static void salvar(@Valid SalaVirtual s) {
+		if (validation.hasErrors()) {
+			validation.keep();
+			params.flash();
+			formSalasVirtuais();
+		}
 		if(s.id == null) {
 			s.save();
 			detalhes(s.id, s);	
@@ -107,7 +163,22 @@ public class SalasVirtuais extends Controller {
 			List<Aluno> salas = sala.alunos;
 			renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s, salas);
 		}
-		
+	}
+	public static void listarSalasVirtuais() {
+		List<SalaVirtual> lista = SalaVirtual.findAll();
+		render(lista);
+	}
+	
+	public static void editar(long id) {
+		SalaVirtual s = SalaVirtual.findById(id);
+		//List<Professor> professores = Professor.findAll();
+		renderTemplate("SalasVirtuais/formSalasVirtuais.html", s);
+	}
+	
+	public static void deletar(long id) {
+		SalaVirtual s = SalaVirtual.findById(id);
+		s.delete();
+		indexProfessores();
 	}
 	public static void detalhes(long id, SalaVirtual s) {
 		
@@ -135,16 +206,7 @@ public class SalasVirtuais extends Controller {
 		renderTemplate("SalasVirtuais/novaSalaVirtual.html", sala, s, salas, listaPaginadaAlunos);	
 	}
 		
-	public static void listarSalasVirtuais() {
-		List<SalaVirtual> lista = SalaVirtual.findAll();
-		render(lista);
-	}
 	
-	public static void deletar(long id) {
-		SalaVirtual s = SalaVirtual.findById(id);
-		s.delete();
-		indexProfessores();
-	}
 	
 	public static void novaSalaVirtual(Long id){
 		System.out.println("mostrar id" + id);
@@ -163,9 +225,6 @@ public class SalasVirtuais extends Controller {
 	}
 	
 	public static void novaSalaVirtualAlunos(){
-		
-	
-		
 		render();
 	}
 	
@@ -173,9 +232,8 @@ public class SalasVirtuais extends Controller {
 	
 	public static void entrarNovaSalaVirtual() {
 		render();
-		
 	}
-
+	
 	public static void indexProfessores() {
 		String idP = session.get("idProfessor");
 		Long idProfessor= Long.valueOf(idP);
@@ -184,5 +242,4 @@ public class SalasVirtuais extends Controller {
 		render(salas);
 		
 	}
-	
 }
