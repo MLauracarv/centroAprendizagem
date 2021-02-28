@@ -3,12 +3,17 @@ package controllers;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.ArrayList;
 
 import models.Aluno;
 import models.CentroAprendizagem;
 import models.Frequencia;
 import models.SalaVirtual;
+import play.data.validation.Valid;
 import play.modules.paginate.ValuePaginator;
 import play.mvc.Controller;
 
@@ -75,8 +80,12 @@ public class CentrosAprendizagem extends Controller {
 	}
 	
 		
-	public static void salvar( CentroAprendizagem c, Long idSalaVirtual) {
-		
+	public static void salvar(@Valid CentroAprendizagem c, Long idSalaVirtual) {
+		if (validation.hasErrors()) {
+			validation.keep();
+			params.flash();
+			registro(idSalaVirtual);
+		}
 		
 		System.out.println("ID SA DA SALA "+idSalaVirtual);
 		c.save();
@@ -100,20 +109,40 @@ public class CentrosAprendizagem extends Controller {
 		SalaVirtual sala = SalaVirtual.findById(idSala);
 		List <Aluno> alunosDaSala = sala.alunos;
 		System.out.println(sala);
-		
+		//int pontosAlunos[] = new int[alunosDaSala.size()];
 		for (int c = 0; c < alunosDaSala.size(); c++) {
+			/*
+			int somaPontosAlunos = 0;
+			for (int cont = 0; c < 1; c++) {
+				somaPontosAlunos += alunosDaSala.get(c).getFrequencia(idSala)[cont];
+			}
+			//pontosAlunos[c] = somaPontosAlunos;
+			alunosDaSala.get(c).pontuacaoPorCA = somaPontosAlunos;
+			*/
 			alunosDaSala.get(c).pontuacaoPorCA = 0;
-			alunosDaSala.get(c).pontuacaoPorCA = alunosDaSala.get(c).getPontosPorSala(idSala);	
+			alunosDaSala.get(c).pontuacaoPorCA = alunosDaSala.get(c).getPontosPorSala(idSala);
+			
+			
 		}
-
-		System.out.println(alunosDaSala.size());
-		Gson gson = new GsonBuilder().create();
-		gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-		String result = gson.toJson(alunosDaSala);
-		renderJSON(result);
-		render(idSala);
+		//List <Integer> pontosDosAlunos = new ArrayList();
+		/*
+		String matrizDados[][] = new String [4][];
+			for (int c = 0; c < alunosDaSala.size(); c++) {
+				//alunosDaSala.get(c).getPontosPorSala(salaVirtual.id);
+				matrizDados[0][c] = alunosDaSala.get(c).nome;
+				matrizDados[1][c] = Long.toString(alunosDaSala.get(c).matricula);
+				matrizDados[2][c] = alunosDaSala.get(c).email;
+				matrizDados[3][c] = Long.toString(alunosDaSala.get(c).getPontosPorSala(sala.id));
+			}
+			*/
+			System.out.println(alunosDaSala.size());
+			Gson gson = new GsonBuilder().create();
+			gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+			//List <Aluno> alunosDaSala = salaVirtual.alunos;
+			String result = gson.toJson(alunosDaSala);
+			renderJSON(result);
+			render(idSala);
 	}
-	
 	
 	public static void ranking(Long salaVirtual) {
 		SalaVirtual sala = SalaVirtual.findById(salaVirtual);
@@ -124,7 +153,8 @@ public class CentrosAprendizagem extends Controller {
 			System.out.println(alunos.get(a).nome+"---"+ alunos.get(a).getPontosPorSala(salaVirtual));
 			listaAlunos.add(alunos.get(a));
 		}
-		
+		/**/
+		//serializarDados(sala);
 		listaAlunos.sort(new Comparator <Aluno>() {
 		
 			@Override
@@ -161,14 +191,7 @@ public class CentrosAprendizagem extends Controller {
 		for(int a1 = 0; a1 < alunos.size(); a1++) {
 			System.out.println(alunos.get(a1).nome+"---"+ alunos.get(a1).getFrequencia(salaVirtual));
 			alunos.get(a1).getFrequencia(salaVirtual);
-		}
-		
-		
+		}	
 		render(alunos, salaVirtual);
 	}
-		
-	
-	
-
-	
 }
