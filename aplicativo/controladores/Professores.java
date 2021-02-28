@@ -5,23 +5,54 @@ import java.util.Random;
 import models.Aluno;
 import models.Professor;
 import models.SalaVirtual;
+import play.data.validation.Valid;
 import play.mvc.Controller;
 
 
 public class Professores extends Controller {
+	public static void Feed() {
+		render();
+	}
+	
+	public static void editarFormQuestao() {
+		renderTemplate("Professores/formQuestao.html");
+	}
+	
+	public static void formsCriados() {
+		render();
+	}
+	
+	public static void resposta() {
+		render();
+	}
+	
+	public static void respostasAlunos() {
+		render();
+	}
 	
 	public static void formProfessores() {
 		render();
 	}
-	public static void salvar(Professor prof) {
-	prof.save();
-	Login.autenticar(prof.email, prof.senha);
+	
+	public static void formAlternativas() {
+		render();
 	}
+	
+	public static void salvar(@Valid Professor prof) {
+		if (validation.hasErrors()) {
+			validation.keep();
+			params.flash();		
+			PainelLoginUsuario.index();
+		}
+		prof.save();
+		Login.autenticar(prof.email, prof.senha);
+	}
+	
 	public static void listarProfessores() {
 		List<Professor> lista = Professor.findAll();
 		render(lista);
 	}
-		
+	
 	public static void editar(long id) {
 		Professor p = Professor.findById(id);
 		renderTemplate("Professores/formProfessores.html", p);
@@ -38,9 +69,4 @@ public class Professores extends Controller {
 	public static void formQuestao() {
 		render();
 	}
-	
-	
-	
-	
-	
 }
