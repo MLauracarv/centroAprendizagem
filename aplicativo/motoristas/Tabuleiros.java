@@ -1,6 +1,7 @@
 package controllers;
 import models.SalaVirtual;
 import models.Tabuleiro;
+import play.data.validation.Valid;
 import play.mvc.Controller;
 
 public class Tabuleiros extends Controller {
@@ -34,7 +35,12 @@ public static void formTabuleiro(Long salaVirtual, Tabuleiro tabuleiro) {
 	}
 	
 	
-	public static void salvarTabuleiro(Long idSala, Tabuleiro t) {
+	public static void salvarTabuleiro(Long idSala, @Valid Tabuleiro t) {
+		if (validation.hasErrors()) {	
+			validation.keep();
+			params.flash();	
+			formTabuleiro(idSala, t);
+		}
 		SalaVirtual sala = SalaVirtual.findById(idSala);	
 		t.salaVirtual = sala;
 		t.save();
