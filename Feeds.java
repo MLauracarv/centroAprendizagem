@@ -9,9 +9,17 @@ import models.Mensagem;
 import models.Professor;
 import models.SalaVirtual;
 import models.Tabuleiro;
+import play.data.validation.Valid;
+import play.mvc.Before;
 import play.mvc.Controller;
 
 public class Feeds extends Controller {
+	@Before(only = {"criarFeed"})
+	static void rentringirSalaAoProfessor() {
+		if (session.get("tipoUsuario") != null && !session.get("tipoUsuario").equalsIgnoreCase("Professor")) {
+			Restricoes.restricoesAlunos();
+		}
+	}
 
 	public static void criarFeed(Long idSalaVirtual) {
 		Feed feed1 = Feed.find("idSalaVirtual = ?", idSalaVirtual).first();
@@ -53,7 +61,7 @@ public class Feeds extends Controller {
 		
 	}
 	*/
-	public static void salvar(Long idSalaVirtual, Feed feed) {
+	public static void salvar(Long idSalaVirtual, @Valid Feed feed) {
 		
 		String idP= session.get("idProfessor");
 		Long idProfessor= Long.valueOf(idP);
