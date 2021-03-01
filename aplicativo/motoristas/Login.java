@@ -2,7 +2,10 @@
 	
 	import java.util.HashMap;
 	import java.util.Map;
-	import com.google.gson.Gson;
+
+import javax.validation.Valid;
+
+import com.google.gson.Gson;
 
 import enums.TipoUsuario;
 import models.Aluno;
@@ -20,6 +23,54 @@ import models.Aluno;
 			PainelLoginUsuario.index();
 		}
 		
+		
+		public static void autenticar(String email, String senha) {
+			
+			Professor professor= Professor.find("email = ? and senha = ?", email , senha).first();
+		    Aluno aluno = Aluno.find("email = ? and senha = ?", email , senha).first();
+			
+			validation.required(email);
+			validation.email(email);
+			validation.required(senha);
+			validation.minSize(senha, 3);
+			if (validation.hasErrors()) {
+				params.flash();
+				validation.keep();
+				System.out.println("E-mail ou senha inválidos");
+			}
+				if(professor == null & aluno == null) {
+					PainelLoginUsuario.index();
+				} else {
+					if (professor != null){
+						session.put("tipoUsuario", "Professor");
+						session.put("nomeProfessor", professor.nome);
+						session.put("matriculaProfessor", professor.matricula);
+						session.put("emailProfessor", professor.email);
+						session.put("idProfessor", professor.id);
+						if (validation.hasErrors()) {	
+							validation.keep();
+							params.flash();	
+							PainelLoginUsuario.index();
+						}
+						SalasVirtuais.indexProfessores();
+					}
+					else {
+						session.put("tipoUsuario", "Aluno");
+						session.put("nomeAluno", aluno.nome);
+						//session.put("matriculaAluno", aluno.matricula);
+						session.put("emailAluno", aluno.email);
+						session.put("idAluno", aluno.id);
+						if (validation.hasErrors()) {	
+							validation.keep();
+							params.flash();	
+							PainelLoginUsuario.index();
+						}
+						Alunos.indexAlunos();
+					}
+				}
+			}
+		}
+		/*
 		public static void autenticarSuap(String matricula, String senha) {
 			WS.HttpResponse resposta;
 			String urlToken = "https://suap.ifrn.edu.br/api/v2/autenticacao/token/";
@@ -37,8 +88,10 @@ import models.Aluno;
 				resposta = WS.url(urlDados).headers(header).get();
 				DadosSUAP dadosSUAP = new Gson().fromJson(resposta.getString(), DadosSUAP.class);
 					
-				Professor professor = Professor.find("matricula = ? and senha = ?", matricula, senha).first();;
-				if (TipoUsuario.PROFESSOR != null) {
+			
+				//if (TipoUsuario.PROFESSOR != null) {
+				if (dadosSUAP.matricula.length() == 7) {
+					Professor professor = Professor.find("matricula = ? and senha = ?", matricula, senha).first();
 					professor = new Professor();
 					professor.nome = dadosSUAP.nome_usual;
 					professor.matricula = dadosSUAP.matricula;
@@ -75,6 +128,7 @@ import models.Aluno;
 			}
 		}
 	}
+	*/
 		
 		
 			
