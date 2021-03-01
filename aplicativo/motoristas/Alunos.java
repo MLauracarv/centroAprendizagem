@@ -10,6 +10,7 @@ import models.Frequencia;
 import models.Professor;
 import models.SalaVirtual;
 import play.data.validation.Valid;
+import play.mvc.Before;
 import play.mvc.Controller;
 
 public class Alunos extends Controller {
@@ -20,12 +21,21 @@ public class Alunos extends Controller {
 		render();
 	}
 	
+	@Before(only = {"indexAlunos", "listarAlunos"})
+	static void rentringirSalaAoAluno() {
+		if (session.get("tipoUsuario") != null && !session.get("tipoUsuario").equalsIgnoreCase("Aluno")) {
+			Restricoes.restricoesProfessores();
+		}
+	}
+	
 	public static void salvar(@Valid Aluno a) {
+		/*
 		if (validation.hasErrors()) {	
 			validation.keep();
 			params.flash();	
 			PainelLoginUsuario.index();
 		}
+		*/
 		a.save();
 		Login.autenticar(a.email, a.senha);
 	}
