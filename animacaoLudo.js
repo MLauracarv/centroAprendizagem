@@ -498,6 +498,7 @@
 
 			function executarAjax() {
 				var ajaxRequest = new XMLHttpRequest();
+				var idSala = document.getElementById("idSala").value;
 				ajaxRequest.onreadystatechange = function() {
 					if (ajaxRequest.readyState == 4 && ajaxRequest.status == 200) {
 						var dados = JSON.parse(ajaxRequest.responseText);
@@ -505,22 +506,23 @@
 						for (var c = 0; c < dados.length; c++) {
 							if (pecas[c].id == -1) {
 								pecas[c].id = c;
-								
+								/*
 								alert(pecas[c].id);
 								alert(dados[c].pontuacaoPorCa);
 								alert(pecas.pos);	
 								alert("olá");
+								*/
 							}
 						}
 						
 						for (var contad = 0; contad < dados.length; contad++) {
 							atualizarPeca(contad, dados[contad].pontuacaoPorCA);
-							alert("achhou");
-							alert(pecas[contad].pos);
+							//alert("achhou");
+							//alert(pecas[contad].pos);
 						}									
 					}
 				}
-				ajaxRequest.open('GET', 'http://localhost:9000/centrosaprendizagem/serializardados?idSala=2', true);
+				ajaxRequest.open('GET', 'http://localhost:9000/centrosaprendizagem/serializardados?idSala=' + idSala, true);
 				ajaxRequest.send();	 	
 			}	
 			
@@ -593,4 +595,6 @@
             }
 
             desenharTabuleiro();
-            window.alert(executarAjax());
+            window.onload = (event) => {
+            	executarAjax();
+            }
