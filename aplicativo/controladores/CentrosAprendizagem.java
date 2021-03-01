@@ -15,12 +15,18 @@ import models.Frequencia;
 import models.SalaVirtual;
 import play.data.validation.Valid;
 import play.modules.paginate.ValuePaginator;
+import play.mvc.Before;
 import play.mvc.Controller;
 
 public class CentrosAprendizagem extends Controller {
-
+	@Before(only = {"frequenciaAlunos", "ranking", "registro", "tabelaFrequencia"})
+	static void rentringirSalaAoProfessor() {
+		if (session.get("tipoUsuario") != null && !session.get("tipoUsuario").equalsIgnoreCase("Professor")) {
+			Restricoes.restricoesAlunos();
+		}
+	}
 	
-	public static void registro(Long salaVirtual, long id){
+	public static void registro(Long salaVirtual){
 		
 		SalaVirtual sala = SalaVirtual.findById(salaVirtual);
 		List<CentroAprendizagem> listaCas = sala.centrosAprendizagem;
@@ -111,30 +117,11 @@ public class CentrosAprendizagem extends Controller {
 		System.out.println(sala);
 		//int pontosAlunos[] = new int[alunosDaSala.size()];
 		for (int c = 0; c < alunosDaSala.size(); c++) {
-			/*
-			int somaPontosAlunos = 0;
-			for (int cont = 0; c < 1; c++) {
-				somaPontosAlunos += alunosDaSala.get(c).getFrequencia(idSala)[cont];
-			}
-			//pontosAlunos[c] = somaPontosAlunos;
-			alunosDaSala.get(c).pontuacaoPorCA = somaPontosAlunos;
-			*/
 			alunosDaSala.get(c).pontuacaoPorCA = 0;
 			alunosDaSala.get(c).pontuacaoPorCA = alunosDaSala.get(c).getPontosPorSala(idSala);
 			
 			
 		}
-		//List <Integer> pontosDosAlunos = new ArrayList();
-		/*
-		String matrizDados[][] = new String [4][];
-			for (int c = 0; c < alunosDaSala.size(); c++) {
-				//alunosDaSala.get(c).getPontosPorSala(salaVirtual.id);
-				matrizDados[0][c] = alunosDaSala.get(c).nome;
-				matrizDados[1][c] = Long.toString(alunosDaSala.get(c).matricula);
-				matrizDados[2][c] = alunosDaSala.get(c).email;
-				matrizDados[3][c] = Long.toString(alunosDaSala.get(c).getPontosPorSala(sala.id));
-			}
-			*/
 			System.out.println(alunosDaSala.size());
 			Gson gson = new GsonBuilder().create();
 			gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
