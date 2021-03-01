@@ -9,9 +9,24 @@ import models.Feed;
 import models.Mensagem;
 import models.Professor;
 import models.SalaVirtual;
+import play.data.validation.Valid;
+import play.mvc.Before;
 import play.mvc.Controller;
 
 public class Mensagens extends Controller{
+	@Before(only = {"comentarioAluno", "feedAluno"})
+	static void rentringirSalaAoAluno() {
+		if (session.get("tipoUsuario") != null && !session.get("tipoUsuario").equalsIgnoreCase("Aluno")) {
+			Restricoes.restricoesProfessores();
+		}
+	}
+	
+	@Before(only = {"feed", "comentario"})
+	static void rentringirSalaAoProfessor() {
+		if (session.get("tipoUsuario") != null && !session.get("tipoUsuario").equalsIgnoreCase("Professor")) {
+			Restricoes.restricoesAlunos();
+		}
+	}
 	
 	public static void comentario(long idMensagem) {
 		render(idMensagem);
@@ -91,7 +106,7 @@ public class Mensagens extends Controller{
 		detalhes(idFeed, idSalaVirtual, null);
 	}
 	
-	public static void salvar ( long idFeed, long idSalaVirtual, Mensagem mensagem, File foto) {
+	public static void salvar ( long idFeed, long idSalaVirtual, @Valid Mensagem mensagem, File foto) {
 		Feed feed = Feed.findById(idFeed);
 		mensagem.feed = feed;
 		String idP= session.get("idProfessor");
