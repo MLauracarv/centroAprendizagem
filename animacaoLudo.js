@@ -140,16 +140,16 @@
 			
             var pecas = [
                 /*Peças azuis*/
-                {i: 9, j: 9, color: blue, id: 0, pos: -1},
-                {i: 9, j: 14, color: blue, id: -1, pos: -1},
-                {i: 14, j: 9, color: blue, id: -1, pos: -1},
-                {i: 14, j: 14, color: blue, id: -1, pos: -1},
-                {i: 10, j: 10, color: blue, id: -1, pos: -1},
-                {i: 10, j: 13, color: blue, id: -1, pos: -1},
-                {i: 13, j: 10, color: blue, id: -1, pos: -1},
-                {i: 13, j: 13, color: blue, id: -1, pos: -1},
-                {i: 12, j: 11, color: blue, id: -1, pos: -1},
-                {i: 11, j: 12, color: blue, id: -1, pos: -1},
+                {i: 9, j: 9, color: "#00BFFF", id: 0, pos: -1},
+                {i: 9, j: 14, color: "#00BFFF", id: -1, pos: -1},
+                {i: 14, j: 9, color: "#00BFFF", id: -1, pos: -1},
+                {i: 14, j: 14, color:"#00BFFF", id: -1, pos: -1},
+                {i: 10, j: 10, color:"#00BFFF", id: -1, pos: -1},
+                {i: 10, j: 13, color: "#00BFFF", id: -1, pos: -1},
+                {i: 13, j: 10, color: "#00BFFF", id: -1, pos: -1},
+                {i: 13, j: 13, color: "#00BFFF", id: -1, pos: -1},
+                {i: 12, j: 11, color: "#00BFFF", id: -1, pos: -1},
+                {i: 11, j: 12, color: "#00BFFF", id: -1, pos: -1},
 
                 /*peças amarelas*/
                 {i: 0, j: 9, color: yellow, id: -1, pos: -1},
@@ -572,7 +572,7 @@
                         } else if (pecas[i].color == red) {
                             var ii = caminho_vermelho[pecas[i].pos].i * step + step / 2;
                             var jj = caminho_vermelho[pecas[i].pos].j * step + step / 2;
-                        } else if (pecas[i].color == blue) {
+                        } else if (pecas[i].color == "#00BFFF") {
                             var ii = caminho_azul[pecas[i].pos].i * step + step / 2;
                             var jj = caminho_azul[pecas[i].pos].j * step + step / 2;
                         }
@@ -584,8 +584,8 @@
             }
 
             function atualizarPeca(id, pontos) {
-            	alert(id);
-            	alert(pontos);
+            	//alert(id);
+            	//alert(pontos);
                 for (var i = 0; i < pecas.length; ++i) {
                     if (pecas[i].id == id) { console.log("ACHOU");
                         pecas[i].pos = pecas[i].pos + pontos;
