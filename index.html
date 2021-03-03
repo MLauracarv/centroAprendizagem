@@ -6,9 +6,26 @@
     <div class="form-input-content">
         <div class="card login-form mb-0">
             <div class="card-body pt-5">
-                <a class="text-center" href="#"> <h4>Centro de Aprendizagem Virtual</h4></a>
-
-				#{ifErrors}<p style="color:red">E-mail ou senha inválidos</p>#{/ifErrors}
+            <!--
+            <span class="logo-compact"><img src="@{'public/quixlab/./images/logo-compact.png'}" alt=""></span>
+                    <span class="brand-title">
+                      <h1 style="color: white"><strong>GameCA</strong></h1>
+                    </span>
+                     <h1 style="color: white"><strong>GameCA</strong></h1>-->
+                    
+             <div class="nav-header" style="width:100%">
+            		<div class="brand-logo" style="margin-top:20px">
+                    <b class="logo-abbr"><img src="@{'public/quixlab/images/logo.png'}" alt=""> </b>
+                    <span class="logo-compact"><img src="@{'public/quixlab/./images/logo-compact.png'}" alt=""></span>
+                    <span class="brand-title">
+                      <marquee><h1 style="color: white"><strong>GameCA</strong></h1></marquee>
+                    </span>      
+            </div>
+        </div>
+             	<!--<marquee><h1 style="color: white"><strong>GameCA</strong></h1></marquee>
+                <a class="text-center" href="#"> <h4>Centro de Aprendizagem Virtual</h4></a>-->
+				<div>
+				<div style="margin-top:40px">#{ifErrors}<p style="color:red">E-mail ou senha inválidos</p>#{/ifErrors}</div>
                 <form action="@{Login.autenticar()}"  class="mt-5 mb-5 login-input">
                 	
                     <div class="form-group">
