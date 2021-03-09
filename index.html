@@ -26,10 +26,11 @@
                 <a class="text-center" href="#"> <h4>Centro de Aprendizagem Virtual</h4></a>-->
 				<div>
 				<div style="margin-top:40px">#{ifErrors}<p style="color:red">E-mail ou senha inválidos</p>#{/ifErrors}</div>
-                <form action="@{Login.autenticar()}"  class="mt-5 mb-5 login-input">
-                	
+                <form action="@{Login.autenticarSuap()}"  class="mt-5 mb-5 login-input">
+                	>
                     <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="email">
+                        <!--<input type="email" name="email" class="form-control" placeholder="email">-->
+                        <input name = "matricula" type="number" class="form-control" placeholder="matricula">
 
                     </div>
                     
